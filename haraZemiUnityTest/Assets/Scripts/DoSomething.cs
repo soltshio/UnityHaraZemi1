@@ -44,6 +44,19 @@ public class DoSomething : MonoBehaviour
             return;
 
         // ここでデコード処理等を記述
-        Debug.Log(message);
+        string receivedData;
+        int t;
+
+        receivedData = message.Substring(1, 6);
+        int.TryParse(receivedData, out t);
+        targetScript.accX = t;
+
+        for(int i=0; i<3 ;i++)
+        {
+            receivedData = message.Substring(7+i, 1);
+            int.TryParse(receivedData, out t);
+            targetScript.sw[i] = t;
+        }
+
     }
 }
