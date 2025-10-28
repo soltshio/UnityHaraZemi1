@@ -1,6 +1,6 @@
 ﻿// Unityでシリアル通信を制御するクラス
 // 例えば空のGameObjectを作り、そこにアタッチする
-// 2025_8月Ver.
+// 2025_10月Ver.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +17,12 @@ public class SerialHandler : MonoBehaviour
 
     // COM10以上は\\\\.\\を付加しないと開けない。
     // portNameに直接代入すると失敗するので、ここでいったん別の変数に代入し、AwakeでportNameに代入
-    string myPortName = "\\\\.\\COM3";
+	// myPortNameが空文字列であればOpenを呼ばない＝デバイスがなくてもアプリケーションを実行することができる
+    const string myPortName = "\\\\.\\COM3";
+
+    [Tooltip("キーボード操作を有効化するか")] [SerializeField]
+    bool _keyboardControlActivate=false;
+
     public int bitRate = 115200;
 
     public string portName;
@@ -37,8 +42,11 @@ public class SerialHandler : MonoBehaviour
 
     void Awake()
     {
-        portName = myPortName;
-        Open();
+        if(!_keyboardControlActivate)//キーボード操作有効の場合
+        {
+            portName = myPortName;
+            Open();
+        }
     }
 
     void Update()
@@ -52,7 +60,10 @@ public class SerialHandler : MonoBehaviour
 
     void OnDestroy()
     {
-        Close();
+        if (isRunning_)
+        {
+            Close();
+        }
     }
 
     private void Open()
