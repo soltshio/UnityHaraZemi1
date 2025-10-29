@@ -15,17 +15,19 @@ public class SerialHandler : MonoBehaviour
     public delegate void SerialDataReceivedEventHandler(string message);
     public event SerialDataReceivedEventHandler OnDataReceived;
 
+    [Tooltip("マイコンを使用しないか\nしないならチェックを入れる")] [SerializeField]
+    bool _dontUseMicon=false;
+
+    [Tooltip("ポート番号")] [SerializeField]
+    int _portNum=3;
+
+    [SerializeField]
+    int _bitRate = 115200;
+
     // COM10以上は\\\\.\\を付加しないと開けない。
     // portNameに直接代入すると失敗するので、ここでいったん別の変数に代入し、AwakeでportNameに代入
 	// myPortNameが空文字列であればOpenを呼ばない＝デバイスがなくてもアプリケーションを実行することができる
-    const string myPortName = "\\\\.\\COM3";
-
-    [Tooltip("キーボード操作を有効化するか")] [SerializeField]
-    bool _keyboardControlActivate=false;
-
-    public int bitRate = 115200;
-
-    public string portName;
+    const string myPortName = "\\\\.\\COM";
     
     SerialPort serialPort_;
     Thread thread_;
@@ -42,11 +44,8 @@ public class SerialHandler : MonoBehaviour
 
     void Awake()
     {
-        if(!_keyboardControlActivate)//キーボード操作有効の場合
-        {
-            portName = myPortName;
-            Open();
-        }
+        if (_dontUseMicon) return;
+        Open(myPortName + _portNum.ToString());
     }
 
     void Update()
@@ -66,9 +65,9 @@ public class SerialHandler : MonoBehaviour
         }
     }
 
-    private void Open()
+    private void Open(string portName)
     {
-        serialPort_ = new SerialPort(portName, bitRate, Parity.None, 8, StopBits.One);
+        serialPort_ = new SerialPort(portName, _bitRate, Parity.None, 8, StopBits.One);
 
         serialPort_.RtsEnable = true;
         serialPort_.DtrEnable = true;
