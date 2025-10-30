@@ -11,7 +11,7 @@ public class SensorInput : MonoBehaviour
 
     //X•ûŒü‚Ì‰Á‘¬“x
     int _accX;
-    const int _defaultAccX=670;
+    const int _defaultAccX=656;
 
     public int AccX { get { return _accX; } }
     public int AccXSubt { get { return _accX - _defaultAccX; } }
@@ -25,7 +25,7 @@ public class SensorInput : MonoBehaviour
 
     //Z•ûŒü‚Ì‰Á‘¬“x
     int _accZ;
-    const int _defaultAccZ = 16300;
+    const int _defaultAccZ = 16410;
 
     public int AccZ { get { return _accZ; } }
     public int AccZSubt { get { return _accZ - _defaultAccZ; } }
@@ -60,7 +60,5 @@ public class SensorInput : MonoBehaviour
         _gyroX = gyro[0];
         _gyroY = gyro[1];
         _gyroZ = gyro[2];
-
-        Debug.Log(gyro[0] + ":" + gyro[1] + ";" + gyro[2]);
     }
 }
