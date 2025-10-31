@@ -2343,8 +2343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Moving
   _startPoint: {fileID: 1882580501}
   _resetDuration: 0.1
-  _speed: {x: 15, y: 15}
-  _limit: {x: 1, y: 1}
+  _speed: {x: 20, y: 20}
+  _limit: {x: 1.5, y: 1}
   _deadZone: {x: 0, y: 0}
   _maxAngle: {x: 0, y: 0}
   _sensorInput: {fileID: 799392593}
