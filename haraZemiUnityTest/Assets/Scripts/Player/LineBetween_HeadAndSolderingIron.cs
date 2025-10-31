@@ -43,9 +43,9 @@ public class LineBetween_HeadAndSolderingIron : MonoBehaviour
             mesh.enabled = false;
         }
 
-        MeshRenderer lastMesh = _lastPoint.GetComponent<MeshRenderer>();
+        //MeshRenderer lastMesh = _lastPoint.GetComponent<MeshRenderer>();
 
-        lastMesh.enabled = false;
+        //lastMesh.enabled = false;
     }
 
     void RenderLine()//ü‚Ì•`‰æ

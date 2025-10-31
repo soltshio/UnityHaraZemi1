@@ -5,6 +5,9 @@ using UnityEngine;
 public class MoveAccelerationSensor : MonoBehaviour
 {
     [SerializeField]
+    Transform _startPoint;
+
+    [SerializeField]
     float _xSpeed;
 
     [SerializeField]
@@ -14,12 +17,12 @@ public class MoveAccelerationSensor : MonoBehaviour
     SensorInput _sensorInput;
 
     [SerializeField]
-    Transform _target;
+    Rigidbody _target;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _target.MovePosition(_startPoint.position);
     }
 
     // Update is called once per frame
@@ -30,8 +33,6 @@ public class MoveAccelerationSensor : MonoBehaviour
 
         Vector3 move=new Vector3(-foo*_xSpeed, -bar*_ySpeed, 0);
         
-        Vector3 pos=_target.position;
-
-        _target.position = pos+move;
+        _target.MovePosition(_target.position+move);
     }
 }
