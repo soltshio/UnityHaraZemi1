@@ -8,19 +8,19 @@ public class Moving : MonoBehaviour
     [Tooltip("初期地点")] [SerializeField]
     Transform _startPoint;
 
-    [Tooltip("リセットにかける時間")] [SerializeField]
+    [Tooltip("リセットにかける時間")] [Min(0)] [SerializeField]
     float _resetDuration;
 
-    [Tooltip("速度")] [SerializeField]
+    [Tooltip("速度")] [Min(0)] [SerializeField]
     Vector2 _speed;
 
-    [Tooltip("移動限界")] [SerializeField]
+    [Tooltip("移動限界")] [Min(0)] [SerializeField]
     Vector2 _limit;
 
-    [Tooltip("角度が変わり始める位置")] [SerializeField]
+    [Tooltip("角度が変わり始める位置")] [Min(0)] [SerializeField]
     Vector2 _deadZone;
 
-    [Tooltip("最大の角度")] [SerializeField]
+    [Tooltip("最大の角度")] [Min(0)] [SerializeField]
     Vector2 _maxAngle;
 
     [SerializeField]
@@ -76,8 +76,6 @@ public class Moving : MonoBehaviour
         destination.x = Mathf.Lerp(0, _prePos.x, t);
         destination.y = Mathf.Lerp(0, _prePos.y, t);
 
-        Debug.Log(_prePos + ":" + destination);
-
         UpdatePos(destination);
     }
 
@@ -101,21 +99,27 @@ public class Moving : MonoBehaviour
         _position.y = Mathf.Clamp(destination.y, -_limit.y, _limit.y);
 
         //角度の処理
-        if (Mathf.Abs(_position.x) >= _deadZone.x)
-        {
-            //float deltaX= Mathf.Abs(_position.x)
-        }
+        float deltaX = Mathf.Max(0, Mathf.Abs(_position.x) - _deadZone.x);
 
-        if (Mathf.Abs(_position.y) >= _deadZone.y)
-        {
+        float deltaY = Mathf.Max(0, Mathf.Abs(_position.y) - _deadZone.y);
 
-        }
+        float tx = deltaX / (_limit.x - _deadZone.x);
+        float ty = deltaY / (_limit.y - _deadZone.y);
 
-        //float angleX;
-        //float angleY;
+        float angleX = Mathf.Lerp(0, _maxAngle.x, tx);
+        float angleY = Mathf.Lerp(0, _maxAngle.y, ty);
+
+        Transform parent = _target.transform.parent;
+
+        Quaternion rotationX = Quaternion.AngleAxis(Mathf.Sign(_position.x) * angleX,Vector3.up);
+        Quaternion rotationY = Quaternion.AngleAxis(Mathf.Sign(_position.y) * angleY, Vector3.left);
+
+        _target.MoveRotation(parent.rotation * rotationX * rotationY);
 
         //移動処理
-        Vector3 pos = _start + new Vector3(_position.x, _position.y, 0);
+        Vector3 foo = parent.rotation * new Vector3(_position.x, _position.y, 0);
+
+        Vector3 pos = _start + foo;
 
         _target.MovePosition(pos);
     }
