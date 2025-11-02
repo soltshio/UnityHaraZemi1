@@ -1970,6 +1970,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &429408101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4192832085697537460, guid: 6d5c3c753712baa489054762487a1cd5, type: 3}
+  m_PrefabInstance: {fileID: 5780414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &441281743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,6 +2226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478429905}
+  - component: {fileID: 478429912}
   - component: {fileID: 478429911}
   - component: {fileID: 478429910}
   - component: {fileID: 478429909}
@@ -2418,6 +2424,19 @@ MonoBehaviour:
   _maxAngle: {x: 40, y: 40}
   _sensorInput: {fileID: 799392593}
   _target: {fileID: 478429909}
+--- !u!114 &478429912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478429904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5199ce3c0ab87ce49b2a3d5e9cf452d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivateThunder
+  _thunderEffect: {fileID: 429408101}
 --- !u!1 &488493904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2901,9 +2920,25 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 39ae3f4a-7cb0-4b41-99b4-86bcbbd0de81
     m_ActionName: 'Game/Reset[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 478429912}
+        m_TargetAssemblyTypeName: ActivateThunder, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 280becff-64fc-4b80-b59b-41328782cc7b
+    m_ActionName: 'Game/Attack[/Keyboard/k]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 13b1ff4e-2d82-4851-a850-99afde57abb7
+  m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &815498659 stripped
@@ -5520,7 +5555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4192832085697537460, guid: 8f616e99c921ad3469a73825790cd1a0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7294142871963146895, guid: 8f616e99c921ad3469a73825790cd1a0, type: 3}
       propertyPath: m_LocalScale.y
