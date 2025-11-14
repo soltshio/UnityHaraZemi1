@@ -8,8 +8,8 @@ public class Moving : MonoBehaviour
     [Tooltip("初期地点")] [SerializeField]
     Transform _startPoint;
 
-    [Tooltip("リセットにかける時間")] [Min(0)] [SerializeField]
-    float _resetDuration;
+    [Tooltip("位置のリセット関係")] [SerializeField]
+    ResetPos _resetPos;
 
     [Tooltip("速度")] [Min(0)] [SerializeField]
     Vector2 _speed;
@@ -33,55 +33,54 @@ public class Moving : MonoBehaviour
 
     Vector2 _position;
 
-    //位置リセット関係
-    float _current;
-    Vector2 _prePos;
-
-    public bool IsReseting { get { return _current > 0; } }
+    Vector2 _move;
 
     public void ResetPos(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        //リセット処理開始
-        _current = _resetDuration;
-        _prePos = _position;
+        _resetPos.OnPushedResetButton(_position);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public void MoveInput(InputAction.CallbackContext context)
+    {
+        Vector2 getInput = context.ReadValue<Vector2>();
+
+        float moveDeltaX = getInput.x * Time.deltaTime * _speed.x / 10;
+        float moveDeltaY = getInput.y * Time.deltaTime * _speed.y / 10;
+
+        _move = new Vector2(moveDeltaX, moveDeltaY);
+    }
+
     void Start()
     {
         _position = Vector2.zero;
+        _move = Vector2.zero;
         _start = _startPoint.position;
         _target.MovePosition(_start);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        ResetMove();
-
-        CalcMove();
-    }
-
-    void ResetMove()
-    {
-        if (!IsReseting) return;
-
-        _current -= Time.deltaTime;
-        float t = _current / _resetDuration;
-
         Vector2 destination;
 
-        destination.x = Mathf.Lerp(0, _prePos.x, t);
-        destination.y = Mathf.Lerp(0, _prePos.y, t);
+        if (_resetPos.IsReseting)//リスタート中
+        {
+            destination = _resetPos.DestinationOnReset();
+        }
+        else//移動中
+        {
+            _move = CalcMoveFromSensor();
+
+            destination = _position + _move;
+        }
 
         UpdatePos(destination);
     }
 
-    void CalcMove()//移動量の計算
+    Vector2 CalcMoveFromSensor()//加速度センサーから取得した値での移動量の計算
     {
-        if (IsReseting) return;
+        if (!_accelerationSensorInput.IsUsedSensor) return _move;//センサーが使われていないなら、処理をしない
 
         //加速度センサーからの入力を移動量に変換
         float moveDeltaX = (float)_accelerationSensorInput.GyroZSubt * Time.deltaTime * _speed.x / 40000;
@@ -89,7 +88,7 @@ public class Moving : MonoBehaviour
 
         Vector2 move = new Vector2(-moveDeltaX, -moveDeltaY);
 
-        UpdatePos(_position + move);
+        return move;
     }
 
     void UpdatePos(Vector2 destination)

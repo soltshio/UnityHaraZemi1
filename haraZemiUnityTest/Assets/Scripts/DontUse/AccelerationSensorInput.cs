@@ -54,6 +54,8 @@ public class AccelerationSensorInput : MonoBehaviour
 
     bool _isUsedSensor = false;//加速度センサーを使っているか(一度もtrueに書き換えられなかったら使われていないということ)
 
+    public bool IsUsedSensor {  get { return _isUsedSensor; } }
+
 
     //accはx,y,zの順で三つ分、gyroも同様
     public void UpdateSensorInfo(int[] acc, int[] gyro)
