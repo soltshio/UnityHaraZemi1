@@ -2767,6 +2767,7 @@ GameObject:
   - component: {fileID: 799392592}
   - component: {fileID: 799392594}
   - component: {fileID: 799392595}
+  - component: {fileID: 799392596}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -2959,6 +2960,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a571f673f46b18d459248f513091509d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AccelerationSensorInput
+--- !u!114 &799392596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799392591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb1ddb237c818545b0b4445d6a785b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonInput
 --- !u!4 &815498659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7294142871963146895, guid: 6d5c3c753712baa489054762487a1cd5, type: 3}
@@ -3060,6 +3073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeccordManager
   serialHandler: {fileID: 886051297}
   _accelerationSensorInput: {fileID: 799392595}
+  _buttonInput: {fileID: 799392596}
 --- !u!114 &886051297
 MonoBehaviour:
   m_ObjectHideFlags: 0

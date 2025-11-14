@@ -16,6 +16,9 @@ public class DeccordManager : MonoBehaviour
     [SerializeField]
     AccelerationSensorInput _accelerationSensorInput;//センサーの情報を渡す用のクラス
 
+    [SerializeField]
+    ButtonInput _buttonInput;//スイッチの情報を渡す用のクラス
+
     void Start()
     {
         // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
@@ -32,7 +35,7 @@ public class DeccordManager : MonoBehaviour
     //受信した信号(message)に対する処理
     //messageのプロトコル
     //加速度センサー系は符号+5桁数字=6桁
-    //S(6桁AccX)(6桁AccY)(6桁AccZ)(6桁GyroX)(6桁GyroY)(6桁GyroZ)E
+    //S(6桁GyroX)(6桁GyroZ)(スイッチ1桁)E
     void OnDataReceived(string message)
     {
         if (message == null)
@@ -41,31 +44,26 @@ public class DeccordManager : MonoBehaviour
         // ここでデコード処理等を記述
         //Debug.Log(message);
 
-        const int accelerationSensorLength = 6;
-
-        //加速度の抽出
-        const int accLength=3;
-        int[] acc = new int[accLength];
-
         int start = 1;
 
-        for(int i=0; i<accLength ;i++)
-        {
-            acc[i] = GetValueFromMessage(message,start,accelerationSensorLength);
-            start += accelerationSensorLength;
-        }
+        //加速度センサーからジャイロの抽出
 
-        //ジャイロの抽出
-        const int gyroLength = 3;
-        int[] gyro = new int[gyroLength];
+        const int accelerationSensorLength = 6;
 
-        for(int i=0; i<gyroLength ;i++)
-        {
-            gyro[i] = GetValueFromMessage(message, start, accelerationSensorLength);
-            start += accelerationSensorLength;
-        }
+        int gyroX = GetValueFromMessage(message, start, accelerationSensorLength);
+        start += accelerationSensorLength;
 
-        _accelerationSensorInput.UpdateSensorInfo(acc, gyro);
+        int gyroZ = GetValueFromMessage(message, start, accelerationSensorLength);
+        start += accelerationSensorLength;
+
+        _accelerationSensorInput.UpdateSensorInfo(gyroX, gyroZ);
+
+        //ボタンの入力情報の抽出
+
+        int sw = GetValueFromMessage(message, start, 1);
+        start++;
+
+        
     }
 
     int GetValueFromMessage(string message,int start,int length)
