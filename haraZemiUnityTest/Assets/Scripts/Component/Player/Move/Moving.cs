@@ -17,11 +17,8 @@ public class Moving : MonoBehaviour
     [Tooltip("移動限界")] [Min(0)] [SerializeField]
     Vector2 _limit;
 
-    [Tooltip("角度が変わり始める位置")] [Min(0)] [SerializeField]
-    Vector2 _deadZone;
-
-    [Tooltip("最大の角度")] [Min(0)] [SerializeField]
-    Vector2 _maxAngle;
+    [Tooltip("角度の書き換え処理関係")] [SerializeField]
+    RotateMoving _rotateMoving;
 
     [SerializeField]
     AccelerationSensorInput _accelerationSensorInput;
@@ -35,6 +32,9 @@ public class Moving : MonoBehaviour
 
     Vector2 _move;
 
+    const float moveFactor_Keyboard = 10;
+    const float moveFactor_Sensor = 40000;
+
     public void ResetPos(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
@@ -46,10 +46,15 @@ public class Moving : MonoBehaviour
     {
         Vector2 getInput = context.ReadValue<Vector2>();
 
-        float moveDeltaX = getInput.x * Time.deltaTime * _speed.x / 10;
-        float moveDeltaY = getInput.y * Time.deltaTime * _speed.y / 10;
+        float moveDeltaX = getInput.x * Time.deltaTime * _speed.x / moveFactor_Keyboard;
+        float moveDeltaY = getInput.y * Time.deltaTime * _speed.y / moveFactor_Keyboard;
 
         _move = new Vector2(moveDeltaX, moveDeltaY);
+    }
+
+    private void Awake()
+    {
+        _rotateMoving.Awake(_target, _limit);
     }
 
     void Start()
@@ -70,7 +75,7 @@ public class Moving : MonoBehaviour
         }
         else//移動中
         {
-            _move = CalcMoveFromSensor();
+            _move = MoveVecFromSensor();
 
             destination = _position + _move;
         }
@@ -78,13 +83,13 @@ public class Moving : MonoBehaviour
         UpdatePos(destination);
     }
 
-    Vector2 CalcMoveFromSensor()//加速度センサーから取得した値での移動量の計算
+    Vector2 MoveVecFromSensor()//加速度センサーから取得した値での移動量の計算
     {
         if (!_accelerationSensorInput.IsUsedSensor) return _move;//センサーが使われていないなら、処理をしない
 
         //加速度センサーからの入力を移動量に変換
-        float moveDeltaX = (float)_accelerationSensorInput.GyroZSubt * Time.deltaTime * _speed.x / 40000;
-        float moveDeltaY = (float)_accelerationSensorInput.GyroXSubt * Time.deltaTime * _speed.y / 40000;
+        float moveDeltaX = _accelerationSensorInput.GyroZSubt * Time.deltaTime * _speed.x / moveFactor_Sensor;
+        float moveDeltaY = _accelerationSensorInput.GyroXSubt * Time.deltaTime * _speed.y / moveFactor_Sensor;
 
         Vector2 move = new Vector2(-moveDeltaX, -moveDeltaY);
 
@@ -97,27 +102,12 @@ public class Moving : MonoBehaviour
         _position.x = Mathf.Clamp(destination.x, -_limit.x, _limit.x);
         _position.y = Mathf.Clamp(destination.y, -_limit.y, _limit.y);
 
-        //角度の処理
-        float deltaX = Mathf.Max(0, Mathf.Abs(_position.x) - _deadZone.x);
-
-        float deltaY = Mathf.Max(0, Mathf.Abs(_position.y) - _deadZone.y);
-
-        float tx = deltaX / (_limit.x - _deadZone.x);
-        float ty = deltaY / (_limit.y - _deadZone.y);
-
-        float angleX = Mathf.Lerp(0, _maxAngle.x, tx);
-        float angleY = Mathf.Lerp(0, _maxAngle.y, ty);
-
         Transform parent = _target.transform.parent;
 
-        Quaternion rotationX = Quaternion.AngleAxis(Mathf.Sign(_position.x) * angleX,Vector3.up);
-        Quaternion rotationY = Quaternion.AngleAxis(Mathf.Sign(_position.y) * angleY, Vector3.left);
-
-        _target.MoveRotation(parent.rotation * rotationX * rotationY);
+        _rotateMoving.MoveRotation(_position,parent);//角度の処理
 
         //移動処理
         Vector3 foo = parent.rotation * new Vector3(_position.x, _position.y, 0);
-
         Vector3 pos = _start + foo;
 
         _target.MovePosition(pos);
