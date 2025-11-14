@@ -14,9 +14,9 @@ public class DeccordManager : MonoBehaviour
     SerialHandler serialHandler;
 
     [SerializeField]
-    SensorInput _sensorInput;//センサーの情報を渡す用のクラス
+    AccelerationSensorInput _accelerationSensorInput;//センサーの情報を渡す用のクラス
 
-  void Start()
+    void Start()
     {
         // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
         serialHandler.OnDataReceived += OnDataReceived;
@@ -65,7 +65,7 @@ public class DeccordManager : MonoBehaviour
             start += accelerationSensorLength;
         }
 
-        _sensorInput.UpdateSensorInfo(acc, gyro);
+        _accelerationSensorInput.UpdateSensorInfo(acc, gyro);
     }
 
     int GetValueFromMessage(string message,int start,int length)

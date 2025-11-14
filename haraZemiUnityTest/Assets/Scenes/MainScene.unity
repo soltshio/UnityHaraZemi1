@@ -1464,6 +1464,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1374159119}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &266400564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4192832085697537460, guid: 0c21ce2081da92544a393d47760201e8, type: 3}
+  m_PrefabInstance: {fileID: 1452564001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &273489802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,11 +1975,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &429408101 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4192832085697537460, guid: 6d5c3c753712baa489054762487a1cd5, type: 3}
-  m_PrefabInstance: {fileID: 5780414}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &441281743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,7 +2436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5199ce3c0ab87ce49b2a3d5e9cf452d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActivateThunder
-  _thunderEffect: {fileID: 429408101}
+  _thunderEffect: {fileID: 266400564}
 --- !u!1 &488493904
 GameObject:
   m_ObjectHideFlags: 0
@@ -3054,7 +3054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aadf34697d4eea48b51a1ec0491d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SerialHandler
-  _dontUseMicon: 0
+  _dontUseMicon: 1
   _portNum: 3
   _bitRate: 115200
 --- !u!1 &986748849
@@ -4166,13 +4166,19 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 2.1623697, y: 1.5176954, z: -2.876676}
-  - {x: 2.099098, y: 1.4076658, z: -3.0683904}
-  - {x: 1.947262, y: 1.1696628, z: -3.0829208}
-  - {x: 1.7105471, y: 1.040074, z: -3.1068814}
-  - {x: 1.41571, y: 1.1083708, z: -3.2077334}
-  - {x: 1.1604207, y: 1.3938355, z: -3.297135}
-  - {x: 0.9476459, y: 1.4164509, z: -3.3500001}
+  - {x: -1.6787417, y: 1.517672, z: -3.4695344}
+  - {x: -1.5734591, y: 1.4007566, z: -3.3135152}
+  - {x: -1.5759953, y: 1.1244258, z: -3.3045647}
+  - {x: -1.5670954, y: 0.9816586, z: -3.2341475}
+  - {x: -1.4851747, y: 0.8392296, z: -3.1873174}
+  - {x: -1.4756858, y: 0.7303883, z: -3.112536}
+  - {x: -1.4326205, y: 0.7130931, z: -2.972129}
+  - {x: -1.341255, y: 0.72425276, z: -2.8876526}
+  - {x: -1.2649488, y: 0.7961517, z: -2.819604}
+  - {x: -1.210666, y: 0.918008, z: -2.7731414}
+  - {x: -1.1893084, y: 1.1160057, z: -2.6855009}
+  - {x: -1.1318983, y: 1.3130583, z: -2.765572}
+  - {x: -1.15007, y: 1.3883343, z: -2.6219263}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

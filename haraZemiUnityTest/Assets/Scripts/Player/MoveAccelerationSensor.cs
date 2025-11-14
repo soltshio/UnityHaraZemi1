@@ -14,7 +14,7 @@ public class MoveAccelerationSensor : MonoBehaviour
     float _ySpeed;
 
     [SerializeField]
-    SensorInput _sensorInput;
+    AccelerationSensorInput _sensorInput;
 
     [SerializeField]
     Rigidbody _target;

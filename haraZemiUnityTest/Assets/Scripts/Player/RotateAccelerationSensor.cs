@@ -14,7 +14,7 @@ public class RotateAccelerationSensor : MonoBehaviour
     float _zSpeed;
 
     [SerializeField]
-    SensorInput _sensorInput;
+    AccelerationSensorInput _sensorInput;
 
     [SerializeField]
     Transform _parent;

@@ -24,7 +24,7 @@ public class Moving : MonoBehaviour
     Vector2 _maxAngle;
 
     [SerializeField]
-    SensorInput _sensorInput;
+    AccelerationSensorInput _accelerationSensorInput;
 
     [SerializeField]
     Rigidbody _target;
@@ -84,8 +84,8 @@ public class Moving : MonoBehaviour
         if (IsReseting) return;
 
         //加速度センサーからの入力を移動量に変換
-        float moveDeltaX = (float)_sensorInput.GyroZSubt * Time.deltaTime * _speed.x / 40000;
-        float moveDeltaY = (float)_sensorInput.GyroXSubt * Time.deltaTime * _speed.y / 40000;
+        float moveDeltaX = (float)_accelerationSensorInput.GyroZSubt * Time.deltaTime * _speed.x / 40000;
+        float moveDeltaY = (float)_accelerationSensorInput.GyroXSubt * Time.deltaTime * _speed.y / 40000;
 
         Vector2 move = new Vector2(-moveDeltaX, -moveDeltaY);
 
