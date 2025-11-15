@@ -24,6 +24,9 @@ public class Moving : MonoBehaviour
     AccelerationSensorInput _accelerationSensorInput;
 
     [SerializeField]
+    RepeatedInput _repeatedInput;
+
+    [SerializeField]
     Rigidbody _target;
 
     Vector3 _start;
@@ -32,22 +35,17 @@ public class Moving : MonoBehaviour
 
     Vector2 _move;
 
-    const float moveFactor_Keyboard = 10;
-    const float moveFactor_Sensor = 40000;
+    const float _moveFactor_Keyboard = 10;
+    const float _moveFactor_Sensor = 40000;
 
-    public void ResetPos(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        _resetPos.OnPushedResetButton(_position);
-    }
+    const int _callReset_RepeatedCount = 2;
 
     public void MoveInput(InputAction.CallbackContext context)
     {
         Vector2 getInput = context.ReadValue<Vector2>();
 
-        float moveDeltaX = getInput.x * Time.deltaTime * _speed.x / moveFactor_Keyboard;
-        float moveDeltaY = getInput.y * Time.deltaTime * _speed.y / moveFactor_Keyboard;
+        float moveDeltaX = getInput.x * Time.deltaTime * _speed.x / _moveFactor_Keyboard;
+        float moveDeltaY = getInput.y * Time.deltaTime * _speed.y / _moveFactor_Keyboard;
 
         _move = new Vector2(moveDeltaX, moveDeltaY);
     }
@@ -55,6 +53,15 @@ public class Moving : MonoBehaviour
     private void Awake()
     {
         _rotateMoving.Awake(_target, _limit);
+
+        _repeatedInput.OnRepeatedInputDown_Count += ResetPos;
+    }
+
+    void ResetPos(int repeatedCount)
+    {
+        if (repeatedCount != _callReset_RepeatedCount) return;
+
+        _resetPos.ResetTrigger(_position);
     }
 
     void Start()
@@ -88,8 +95,8 @@ public class Moving : MonoBehaviour
         if (!_accelerationSensorInput.IsUsedSensor) return _move;//センサーが使われていないなら、処理をしない
 
         //加速度センサーからの入力を移動量に変換
-        float moveDeltaX = _accelerationSensorInput.GyroZSubt * Time.deltaTime * _speed.x / moveFactor_Sensor;
-        float moveDeltaY = _accelerationSensorInput.GyroXSubt * Time.deltaTime * _speed.y / moveFactor_Sensor;
+        float moveDeltaX = _accelerationSensorInput.GyroZSubt * Time.deltaTime * _speed.x / _moveFactor_Sensor;
+        float moveDeltaY = _accelerationSensorInput.GyroXSubt * Time.deltaTime * _speed.y / _moveFactor_Sensor;
 
         Vector2 move = new Vector2(-moveDeltaX, -moveDeltaY);
 

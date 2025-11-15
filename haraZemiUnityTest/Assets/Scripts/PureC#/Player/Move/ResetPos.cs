@@ -15,10 +15,10 @@ public class ResetPos
 
     public bool IsReseting { get { return _current > 0; } }
 
-    public void OnPushedResetButton(Vector2 currentPos)//位置リセットのボタンが押された瞬間の処理
+    public void ResetTrigger(Vector2 current)//位置リセットのボタンが押された瞬間の処理
     {
         _current = _resetDuration;
-        _prePos = currentPos;
+        _prePos = current;
     }
 
     public Vector2 DestinationOnReset()//リセット時の移動先、リセット中は呼ばないようにする
