@@ -6,18 +6,25 @@ public class ActivateThunder : MonoBehaviour
     [SerializeField]
     GameObject _thunderEffect;
 
-    public void Activate(InputAction.CallbackContext context)
+    [SerializeField]
+    HoldDownInput _holdDownInput;
+
+    private void Awake()
     {
-        if(context.performed)//•\Ž¦‰»
-        {
-            _thunderEffect.SetActive(true);
-        }
-        else if(context.canceled)//”ñ•\Ž¦‰»
-        {
-            _thunderEffect.SetActive(false);
-        }
+        _holdDownInput.OnStartHold += Activate;
+        _holdDownInput.OnEndHold += DeActivate;
     }
-    
+
+    void Activate()
+    {
+        _thunderEffect.SetActive(true);
+    }
+
+    void DeActivate()
+    {
+        _thunderEffect.SetActive(false);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -2425,6 +2425,7 @@ MonoBehaviour:
     _deadZone: {x: 0.12, y: 0.08}
     _maxAngle: {x: 30, y: 30}
   _accelerationSensorInput: {fileID: 799392595}
+  _repeatedInput: {fileID: 799392597}
   _target: {fileID: 478429909}
 --- !u!114 &478429912
 MonoBehaviour:
@@ -2439,6 +2440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActivateThunder
   _thunderEffect: {fileID: 266400564}
+  _holdDownInput: {fileID: 799392598}
 --- !u!1 &488493904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,6 +2770,8 @@ GameObject:
   - component: {fileID: 799392594}
   - component: {fileID: 799392595}
   - component: {fileID: 799392596}
+  - component: {fileID: 799392597}
+  - component: {fileID: 799392598}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -2899,38 +2903,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 478429911}
         m_TargetAssemblyTypeName: Moving, Assembly-CSharp
-        m_MethodName: ResetPos
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 39ae3f4a-7cb0-4b41-99b4-86bcbbd0de81
-    m_ActionName: 'Game/Reset[/Keyboard/r]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478429912}
-        m_TargetAssemblyTypeName: ActivateThunder, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 280becff-64fc-4b80-b59b-41328782cc7b
-    m_ActionName: 'Game/Attack[/Keyboard/k]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478429911}
-        m_TargetAssemblyTypeName: Moving, Assembly-CSharp
         m_MethodName: MoveInput
         m_Mode: 0
         m_Arguments:
@@ -2943,6 +2915,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 967440c2-9978-48b0-bd56-754f4ce833c8
     m_ActionName: 'Game/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 799392597}
+        m_TargetAssemblyTypeName: RepeatedInput, Assembly-CSharp
+        m_MethodName: OnInputDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 799392598}
+        m_TargetAssemblyTypeName: HoldDownInput, Assembly-CSharp
+        m_MethodName: OnInputDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 799392598}
+        m_TargetAssemblyTypeName: HoldDownInput, Assembly-CSharp
+        m_MethodName: OnInputUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 12fcfc0d-fe42-4826-9337-3405d8729ad8
+    m_ActionName: 'Game/Action[/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -2972,6 +2984,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb1ddb237c818545b0b4445d6a785b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonInput
+--- !u!114 &799392597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799392591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3850907d1ee5c484f9d3b508e5091f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RepeatedInput
+  _threshold: 0.6
+  _buttonInput: {fileID: 799392596}
+--- !u!114 &799392598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799392591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3201e57770974daf01da4573ccf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldDownInput
+  _threshold: 0.5
+  _buttonInput: {fileID: 799392596}
 --- !u!4 &815498659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7294142871963146895, guid: 6d5c3c753712baa489054762487a1cd5, type: 3}
