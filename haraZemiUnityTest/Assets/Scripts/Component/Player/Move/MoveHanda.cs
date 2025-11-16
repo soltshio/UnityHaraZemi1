@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 //はんだごての左右上下の移動
 
-public class Moving : MonoBehaviour
+public class MoveHanda : MonoBehaviour
 {
     [Tooltip("初期地点")] [SerializeField]
     Transform _startPoint;
@@ -35,19 +35,21 @@ public class Moving : MonoBehaviour
 
     Vector2 _move;
 
-    const float _moveFactor_Keyboard = 10;
-    const float _moveFactor_Sensor = 40000;
+    const float _moveFactor_Sensor = 4000;
 
     const int _callReset_RepeatedCount = 2;
+
+    public Vector2 Position { get { return _position; } }
 
     public void MoveInput(InputAction.CallbackContext context)
     {
         Vector2 getInput = context.ReadValue<Vector2>();
 
-        float moveDeltaX = getInput.x * Time.deltaTime * _speed.x / _moveFactor_Keyboard;
-        float moveDeltaY = getInput.y * Time.deltaTime * _speed.y / _moveFactor_Keyboard;
+        double moveDeltaX = getInput.x * _speed.x * Time.deltaTime;
 
-        _move = new Vector2(moveDeltaX, moveDeltaY);
+        double moveDeltaY = getInput.y * _speed.y * Time.deltaTime;
+
+        _move = new Vector2((float)moveDeltaX, (float)moveDeltaY);
     }
 
     private void Awake()
@@ -95,10 +97,10 @@ public class Moving : MonoBehaviour
         if (!_accelerationSensorInput.IsUsedSensor) return _move;//センサーが使われていないなら、処理をしない
 
         //加速度センサーからの入力を移動量に変換
-        float moveDeltaX = _accelerationSensorInput.GyroZSubt * Time.deltaTime * _speed.x / _moveFactor_Sensor;
-        float moveDeltaY = _accelerationSensorInput.GyroXSubt * Time.deltaTime * _speed.y / _moveFactor_Sensor;
+        double moveDeltaX = _accelerationSensorInput.GyroZSubt * _speed.x * Time.deltaTime  / _moveFactor_Sensor;
+        double moveDeltaY = _accelerationSensorInput.GyroXSubt * _speed.y * Time.deltaTime  / _moveFactor_Sensor;
 
-        Vector2 move = new Vector2(-moveDeltaX, -moveDeltaY);
+        Vector2 move = new Vector2(-(float)moveDeltaX, -(float)moveDeltaY);
 
         return move;
     }
