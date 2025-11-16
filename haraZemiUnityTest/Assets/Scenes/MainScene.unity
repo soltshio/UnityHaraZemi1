@@ -2447,7 +2447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Moving
   _startPoint: {fileID: 1882580501}
   _resetPos:
-    _resetDuration: 0.1
+    _resetDuration: 0.17
   _speed: {x: 2, y: 2}
   _limit: {x: 1.2, y: 0.8}
   _rotateMoving:
@@ -3365,6 +3365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988586782}
   - component: {fileID: 988586783}
+  - component: {fileID: 988586784}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -3403,6 +3404,20 @@ MonoBehaviour:
   _centerVCam: {fileID: 897513463}
   _trackVCam: {fileID: 1737047678}
   _moveHanda: {fileID: 478429911}
+--- !u!114 &988586784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988586781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6890fc2ab04816448885897afaa7cebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResetRotationOnDeActivate
+  _origin: {fileID: 897513464}
+  _mine: {fileID: 1737047678}
 --- !u!1 &1027084494
 GameObject:
   m_ObjectHideFlags: 0
@@ -5461,12 +5476,12 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.3, y: 0.3}
+      Size: {x: 0.45, y: 0.45}
     HardLimits:
       Enabled: 0
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
+  CenterOnActivate: 0
   TargetOffset: {x: 0, y: 0, z: 0}
   Damping: {x: 0.8, y: 0.8}
   Lookahead:

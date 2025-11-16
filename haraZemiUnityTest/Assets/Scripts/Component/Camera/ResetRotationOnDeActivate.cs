@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -13,29 +14,20 @@ public class ResetRotationOnDeActivate : MonoBehaviour
 
     Quaternion _originRot;
 
-    bool _preEnabled = false;
-
     void Awake()
     {
         _originRot = _origin.rotation;
+    }
 
+    private void Update()
+    {
+        if (_mine.gameObject.activeSelf) return;
+
+        ResetRot();
     }
 
     public void ResetRot()
     {
         _mine.transform.rotation = _originRot;
-        Debug.Log("åƒÇŒÇÍÇƒÇÈÅH");
-    }
-
-    private void Update()
-    {
-        bool enabled = _mine.enabled;
-
-        if(enabled==false && _preEnabled==true)
-        {
-            ResetRot();
-        }
-
-        _preEnabled = enabled;
     }
 }
