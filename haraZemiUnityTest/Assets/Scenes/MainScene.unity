@@ -2468,7 +2468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5199ce3c0ab87ce49b2a3d5e9cf452d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActivateThunder
-  _thunderEffect: {fileID: 1585317526}
+  _thunderEffect: {fileID: 911945905}
   _holdDownInput: {fileID: 799392598}
 --- !u!1 &488493904
 GameObject:
@@ -3266,6 +3266,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 685568007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &911945905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4192832085697537460, guid: 6d5c3c753712baa489054762487a1cd5, type: 3}
+  m_PrefabInstance: {fileID: 5780414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &986748849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,7 +4403,7 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374159118}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -5058,11 +5063,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1374159119}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1585317526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4192832085697537460, guid: 27a673e90735ba945a0c8d216cd428eb, type: 3}
-  m_PrefabInstance: {fileID: 1756547089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1654689026
 GameObject:
   m_ObjectHideFlags: 0
