@@ -42,7 +42,7 @@ public class DeccordManager : MonoBehaviour
             return;
 
         // ここでデコード処理等を記述
-        //Debug.Log(message);
+        Debug.Log(message);
 
         int start = 1;
 
@@ -63,6 +63,7 @@ public class DeccordManager : MonoBehaviour
         int sw = GetValueFromMessage(message, start, 1);
         start++;
 
+        _buttonInput.UpdateInputInfo(sw);
         
     }
 
