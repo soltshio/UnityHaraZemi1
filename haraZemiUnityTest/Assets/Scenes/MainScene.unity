@@ -3411,7 +3411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da6411db2e48fd46bd9b3b7f21e6858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwitchCamera_HandaPosition
-  _threshold: {x: 0.8, y: 0.6}
+  _threshold: {x: 0.8, y: 0.4}
   _centerVCam: {fileID: 897513463}
   _trackVCam: {fileID: 1737047678}
   _moveHanda: {fileID: 478429911}
@@ -4386,13 +4386,17 @@ PrefabInstance:
       propertyPath: InitialModule.maxNumParticles
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 995786388772965242, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].value
+      value: 0.16507745
+      objectReference: {fileID: 0}
     - target: {fileID: 4192832085697537460, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
       propertyPath: m_Name
       value: ThunderEffect
       objectReference: {fileID: 0}
     - target: {fileID: 4192832085697537460, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7294142871963146895, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5523,6 +5527,97 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &543450652648895784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148997762962}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.16829646, y: -0.48973608, z: 0.8499598, w: -0.09697029}
+  m_LocalPosition: {x: -144.9, y: 224.7, z: 346.8}
+  m_LocalScale: {x: 4500, y: 4500, z: 4500}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 120.1, y: -202.4, z: 0}
+--- !u!1 &919132148997762962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543450652648895784}
+  - component: {fileID: 3469287836633037453}
+  - component: {fileID: 1711813856059756103}
+  m_Layer: 0
+  m_Name: Meteor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1711813856059756103
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148997762962}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 7039295511749981057, guid: 2dd0037b96c3fcb4c80f22954c240276, type: 3}
+  - {fileID: -7791486788655378091, guid: 2dd0037b96c3fcb4c80f22954c240276, type: 3}
+  - {fileID: -6182109742710103514, guid: 2dd0037b96c3fcb4c80f22954c240276, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &3469287836633037453
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148997762962}
+  m_Mesh: {fileID: -6305662578332712233, guid: 2dd0037b96c3fcb4c80f22954c240276, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5540,3 +5635,4 @@ SceneRoots:
   - {fileID: 178671637}
   - {fileID: 1882580501}
   - {fileID: 685568007}
+  - {fileID: 543450652648895784}
