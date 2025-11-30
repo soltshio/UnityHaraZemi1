@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//マイコンから来るメッセージをデコードする
+
 public class DeccordManager : MonoBehaviour
 {
     // シリアル通信のクラス、クラス名は正しく書くこと
     [SerializeField]
-    SerialHandler serialHandler;
+    SerialHandler _serialHandler;
 
     [SerializeField]
     AccelerationSensorInput _accelerationSensorInput;//センサーの情報を渡す用のクラス
@@ -22,7 +24,7 @@ public class DeccordManager : MonoBehaviour
     void Start()
     {
         // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
-        serialHandler.OnDataReceived += OnDataReceived;
+        _serialHandler.OnDataReceived += OnDataReceived;
     }
 
     void Update()

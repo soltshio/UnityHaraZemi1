@@ -2201,10 +2201,12 @@ GameObject:
   - component: {fileID: 478429913}
   - component: {fileID: 478429912}
   - component: {fileID: 478429911}
+  - component: {fileID: 478429915}
+  - component: {fileID: 478429917}
+  - component: {fileID: 478429918}
   - component: {fileID: 478429910}
   - component: {fileID: 478429909}
   - component: {fileID: 478429908}
-  - component: {fileID: 478429915}
   m_Layer: 0
   m_Name: HandaMovingCenter
   m_TagString: Untagged
@@ -2428,7 +2430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChangeThunderConvergence
   _thunderParticle: {fileID: 27192523}
   _conValue:
-    startSpeed: 1000
+    startSpeed: 800
     startSize: 0.7
     startLifeTimeMin: 1
     startLifeTimeMax: 2
@@ -2438,13 +2440,13 @@ MonoBehaviour:
     strength: 400
     colorOverTime: {r: 1, g: 1, b: 1, a: 1}
   _divValue:
-    startSpeed: 50
+    startSpeed: 100
     startSize: 0.1
     startLifeTimeMin: 0.1
     startLifeTimeMax: 1.5
     simulationSpeed: 3
     rateOverTime: 15
-    angle: 10
+    angle: 7
     strength: 150
     colorOverTime: {r: 1, g: 0.8858696, b: 0, a: 1}
   _thunderConvergence: {fileID: 478429916}
@@ -2469,7 +2471,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478429904}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a02409f83ccdb5643a434c5fe5d72a36, type: 3}
   m_Name: 
@@ -2482,7 +2484,7 @@ MonoBehaviour:
   _isShowDebugRay: 1
   _hitLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   _shotInterval: 0.1
 --- !u!114 &478429916
 MonoBehaviour:
@@ -2496,6 +2498,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8301b2e3af49bc44fbd6645f50688227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThunderConvergence
+--- !u!114 &478429917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478429904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6020b2cca5eb14abf6d89692f94376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeThunderCollider_Convergence
+  _shotThunderRay: {fileID: 478429915}
+  _conValue:
+    startRadius: 4
+    coneAngle: 0
+    rayCount: 3
+    rayDistance: 800
+    shotInterval: 0.1
+  _divValue:
+    startRadius: 0
+    coneAngle: 30
+    rayCount: 7
+    rayDistance: 70
+    shotInterval: 0.1
+  _thunderConvergence: {fileID: 478429916}
+  _activateThunder: {fileID: 478429912}
+--- !u!114 &478429918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478429904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6353041dea0eec84592c196d09587426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugOnHit
+  _sendManager: {fileID: 0}
+  _shotThunderray: {fileID: 478429915}
+  _timeOutDuration: 0.5
 --- !u!1 &488493904
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,6 +3226,7 @@ GameObject:
   - component: {fileID: 886051295}
   - component: {fileID: 886051296}
   - component: {fileID: 886051297}
+  - component: {fileID: 886051298}
   m_Layer: 0
   m_Name: MiconManageer
   m_TagString: Untagged
@@ -3216,7 +3261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9b07c9a8c0bcc4481a5437ed1e3106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeccordManager
-  serialHandler: {fileID: 886051297}
+  _serialHandler: {fileID: 0}
   _accelerationSensorInput: {fileID: 799392595}
   _buttonInput: {fileID: 799392596}
 --- !u!114 &886051297
@@ -3234,6 +3279,19 @@ MonoBehaviour:
   _dontUseMicon: 1
   _portNum: 4
   _bitRate: 115200
+--- !u!114 &886051298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886051294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0eb618b71c93d4e9739abb9a183885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SendManager
+  _serialHandler: {fileID: 886051297}
 --- !u!1 &897513462
 GameObject:
   m_ObjectHideFlags: 0
@@ -4423,6 +4481,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 995786388772965242, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 384
+      objectReference: {fileID: 0}
+    - target: {fileID: 995786388772965242, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].value
       value: 0.16507745
       objectReference: {fileID: 0}
@@ -5604,7 +5666,7 @@ Transform:
   m_GameObject: {fileID: 919132148997762962}
   serializedVersion: 2
   m_LocalRotation: {x: -0.16829646, y: -0.48973608, z: 0.8499598, w: -0.09697029}
-  m_LocalPosition: {x: -277, y: 426, z: 669}
+  m_LocalPosition: {x: -141, y: 219, z: 338}
   m_LocalScale: {x: 4500, y: 4500, z: 4500}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5622,7 +5684,7 @@ GameObject:
   - component: {fileID: 3469287836633037453}
   - component: {fileID: 1711813856059756103}
   - component: {fileID: 3469287836633037454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Meteor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5702,7 +5764,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

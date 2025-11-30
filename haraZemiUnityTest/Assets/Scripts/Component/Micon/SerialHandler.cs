@@ -131,6 +131,8 @@ public class SerialHandler : MonoBehaviour
 
     public void Write(string message)
     {
+        if (_dontUseMicon) return;
+
         try
         {
             serialPort_.Write(message);
