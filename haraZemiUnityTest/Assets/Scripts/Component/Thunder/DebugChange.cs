@@ -5,7 +5,7 @@ public class DebugChange : MonoBehaviour
 {
 
     [SerializeField]
-    ChangeThunderConvergence thunderConvergence;
+    ThunderConvergence _thunderConvergence;
 
     bool inc=false;
     bool dec=false;
@@ -38,12 +38,12 @@ public class DebugChange : MonoBehaviour
     {
         if(inc)
         {
-            thunderConvergence.ConvergenceRate += 0.5f * Time.deltaTime;
+            _thunderConvergence.ConvergenceRate += 0.5f * Time.deltaTime;
         }
 
         if(dec)
         {
-            thunderConvergence.ConvergenceRate -= 0.5f * Time.deltaTime;
+            _thunderConvergence.ConvergenceRate -= 0.5f * Time.deltaTime;
         }
     }
 }

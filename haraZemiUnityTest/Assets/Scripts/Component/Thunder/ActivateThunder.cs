@@ -1,13 +1,25 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Collections;
 
 public class ActivateThunder : MonoBehaviour
 {
     [SerializeField]
-    GameObject _thunderEffect;
-
-    [SerializeField]
     HoldDownInput _holdDownInput;
+
+    bool _isActive;
+    public event Action<bool> OnChangedValue;
+
+    public bool IsActive
+    {
+        get { return _isActive; }
+        private set
+        {
+            _isActive = value;
+            OnChangedValue?.Invoke(value);
+        }
+    }
+
 
     private void Awake()
     {
@@ -17,23 +29,18 @@ public class ActivateThunder : MonoBehaviour
 
     void Activate()
     {
-        _thunderEffect.SetActive(true);
+        IsActive = true;
     }
 
     void DeActivate()
     {
-        _thunderEffect.SetActive(false);
+        IsActive = false;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    IEnumerator Start()
     {
-        _thunderEffect.SetActive(false);
-    }
+        yield return null;//他のコンポーネントがこのコンポーネントにアクセスし終わるまで、1フレーム待つ
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IsActive = false;
     }
 }

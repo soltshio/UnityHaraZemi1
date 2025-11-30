@@ -361,11 +361,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!1 &27192520 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4192832085697537460, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
-  m_PrefabInstance: {fileID: 1417766912}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &27192521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7294142871963146895, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
@@ -2201,6 +2196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478429905}
+  - component: {fileID: 478429916}
   - component: {fileID: 478429914}
   - component: {fileID: 478429913}
   - component: {fileID: 478429912}
@@ -2208,6 +2204,7 @@ GameObject:
   - component: {fileID: 478429910}
   - component: {fileID: 478429909}
   - component: {fileID: 478429908}
+  - component: {fileID: 478429915}
   m_Layer: 0
   m_Name: HandaMovingCenter
   m_TagString: Untagged
@@ -2416,7 +2413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5199ce3c0ab87ce49b2a3d5e9cf452d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActivateThunder
-  _thunderEffect: {fileID: 27192520}
   _holdDownInput: {fileID: 799392598}
 --- !u!114 &478429913
 MonoBehaviour:
@@ -2451,6 +2447,8 @@ MonoBehaviour:
     angle: 10
     strength: 150
     colorOverTime: {r: 1, g: 0.8858696, b: 0, a: 1}
+  _thunderConvergence: {fileID: 478429916}
+  _activateThunder: {fileID: 478429912}
 --- !u!114 &478429914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,7 +2461,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c1fab1b089dba498d2746489c0eb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugChange
-  thunderConvergence: {fileID: 478429913}
+  _thunderConvergence: {fileID: 478429916}
+--- !u!114 &478429915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478429904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02409f83ccdb5643a434c5fe5d72a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShotThunderRay
+  _startCenterPoint: {fileID: 1432331870}
+  _startRadius: 0
+  _coneAngle: 45
+  _rayCount: 7
+  _rayDistance: 500
+  _isShowDebugRay: 1
+  _hitLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _shotInterval: 0.1
+--- !u!114 &478429916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478429904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8301b2e3af49bc44fbd6645f50688227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThunderConvergence
 --- !u!1 &488493904
 GameObject:
   m_ObjectHideFlags: 0
@@ -4383,6 +4415,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1458089176}
     m_Modifications:
     - target: {fileID: 995786388772965242, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 995786388772965242, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 50
       objectReference: {fileID: 0}
@@ -4443,6 +4479,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b359e5ac8d26c46a3b55c5fe1754b0, type: 3}
+--- !u!1 &1432331869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1432331870}
+  m_Layer: 0
+  m_Name: ShotRayStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1432331870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432331869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.664, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1458089176}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1458089173
 GameObject:
   m_ObjectHideFlags: 0
@@ -4532,6 +4599,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 27192521}
+  - {fileID: 1432331870}
   m_Father: {fileID: 478429905}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!136 &1458089177
@@ -5536,7 +5604,7 @@ Transform:
   m_GameObject: {fileID: 919132148997762962}
   serializedVersion: 2
   m_LocalRotation: {x: -0.16829646, y: -0.48973608, z: 0.8499598, w: -0.09697029}
-  m_LocalPosition: {x: -144.9, y: 224.7, z: 346.8}
+  m_LocalPosition: {x: -277, y: 426, z: 669}
   m_LocalScale: {x: 4500, y: 4500, z: 4500}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5553,6 +5621,7 @@ GameObject:
   - component: {fileID: 543450652648895784}
   - component: {fileID: 3469287836633037453}
   - component: {fileID: 1711813856059756103}
+  - component: {fileID: 3469287836633037454}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Untagged
@@ -5618,6 +5687,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148997762962}
   m_Mesh: {fileID: -6305662578332712233, guid: 2dd0037b96c3fcb4c80f22954c240276, type: 3}
+--- !u!136 &3469287836633037454
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148997762962}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.011132221
+  m_Height: 0.022450522
+  m_Direction: 1
+  m_Center: {x: -0.0000000065922907, y: 0.0012252588, z: 0.0000000038348373}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
