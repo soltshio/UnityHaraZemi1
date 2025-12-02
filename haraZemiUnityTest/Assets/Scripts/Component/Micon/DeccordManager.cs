@@ -46,6 +46,10 @@ public class DeccordManager : MonoBehaviour
         // ここでデコード処理等を記述
         Debug.Log(message);
 
+        if (message.Length < 6)
+            return;
+
+
         int start = 1;
 
         //加速度センサーからジャイロの抽出

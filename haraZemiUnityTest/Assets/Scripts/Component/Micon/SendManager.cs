@@ -7,19 +7,22 @@ public class SendManager : MonoBehaviour
     [SerializeField]
     SerialHandler _serialHandler;
 
-    Queue<string> _messageQueue=new Queue<string>();
+    [SerializeField]
+    DebugOnHit _onHit;
 
-    public void Send(string message)
-    {
-        _messageQueue.Enqueue(message);
-    }
+    [SerializeField]
+    DebugSendConvergence _sendConvergence;
     
     void Update()
     {
-        while(_messageQueue.Count != 0)
-        {
-            string message = _messageQueue.Dequeue();
+        string message;
 
+        if(_onHit.HasMessage(out message))
+        {
+            _serialHandler.Write(message);
+        }
+        if(_sendConvergence.HasMessage(out message))
+        {
             _serialHandler.Write(message);
         }
     }

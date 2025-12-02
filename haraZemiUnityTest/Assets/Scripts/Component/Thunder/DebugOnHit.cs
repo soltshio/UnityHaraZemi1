@@ -15,6 +15,25 @@ public class DebugOnHit : MonoBehaviour
 
     bool IsTimeOut { get { return _timer <= 0; } }
 
+    bool _outputFlag = false;
+    string _message;
+
+    public bool HasMessage(out string message)
+    {
+        message = null;
+
+        if (_outputFlag)
+        {
+            message = _message;
+            _outputFlag = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void Awake()
     {
         _shotThunderray.OnHit += OnHit;
@@ -28,15 +47,19 @@ public class DebugOnHit : MonoBehaviour
 
         if (!IsTimeOut) return;
         //タイムアウト
-        _sendManager.Send(MiconCommandDictionary.normal);
+        _outputFlag = true;
+        _message = MiconCommandDictionary.normal;
     }
 
     private void OnHit(RaycastHit hit)
     {
-        _timer = _timeOutDuration;
+        if(IsTimeOut)
+        {
+            //ヒット
+            _outputFlag = true;
+            _message = MiconCommandDictionary.sparking;
+        }
 
-        if (!IsTimeOut) return;
-        //ヒット
-        _sendManager.Send(MiconCommandDictionary.sparking);
+        _timer = _timeOutDuration;
     }
 }

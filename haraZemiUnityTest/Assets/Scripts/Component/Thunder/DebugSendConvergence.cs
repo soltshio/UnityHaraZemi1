@@ -9,6 +9,25 @@ public class DebugSendConvergence : MonoBehaviour
     [SerializeField]
     SendManager _sendManager;
 
+    bool _outputFlag=false;
+    string _message;
+
+    public bool HasMessage(out string message)
+    {
+        message = null;
+
+        if (_outputFlag)
+        {
+            message = _message;
+            _outputFlag = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void Awake()
     {
         _thunderConvergence.OnChangedValue += SendConvergenceToMicon;
@@ -16,12 +35,13 @@ public class DebugSendConvergence : MonoBehaviour
 
     void SendConvergenceToMicon(float convergence)
     {
-        // 0`1 ¨ 0`1000 ‚Ì®”‚ÖilÌŒÜ“üj
-        int num = Mathf.RoundToInt(convergence * 1000f);
+        // 0`1 ¨ 0`9 ‚Ì®”‚ÖilÌŒÜ“üj
+        int num = Mathf.Clamp(Mathf.FloorToInt(convergence * 10f), 0, 9);
 
-        // 4 Œ…ƒ[ƒ–„‚ß‚Ì•¶š—ñ‚É•ÏŠ·
-        string result = num.ToString("D4");
+        //•¶š‚É•ÏŠ·
+        string result = num.ToString();
 
-        _sendManager.Send(result);
+        _outputFlag = true;
+        _message = result;
     }
 }
