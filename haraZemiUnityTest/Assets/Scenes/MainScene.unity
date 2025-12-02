@@ -2465,6 +2465,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugChange
   _thunderConvergence: {fileID: 478429916}
+  _rotaryEncoderInput: {fileID: 799392599}
+  _inputKeyBoardDelta: 0.5
+  _inputRotaryEncoderDelta: 0.01
 --- !u!114 &478429915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2909,6 +2912,7 @@ GameObject:
   - component: {fileID: 799392596}
   - component: {fileID: 799392597}
   - component: {fileID: 799392598}
+  - component: {fileID: 799392599}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -3181,6 +3185,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoldDownInput
   _threshold: 0.5
   _buttonInput: {fileID: 799392596}
+--- !u!114 &799392599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799392591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff59f547c273f4db798ef6bc9cd530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RotaryEncoderInput
+  _thresholdMax: 0
+  _thresholdMin: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,6 +3297,7 @@ MonoBehaviour:
   _serialHandler: {fileID: 886051297}
   _accelerationSensorInput: {fileID: 799392595}
   _buttonInput: {fileID: 799392596}
+  _rotaryEncoderInput: {fileID: 799392599}
 --- !u!114 &886051297
 MonoBehaviour:
   m_ObjectHideFlags: 0

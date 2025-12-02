@@ -21,30 +21,26 @@ public class DeccordManager : MonoBehaviour
     [SerializeField]
     ButtonInput _buttonInput;//スイッチの情報を渡す用のクラス
 
+    [SerializeField]
+    RotaryEncoderInput _rotaryEncoderInput;//ロータリーエンコーダーの情報を渡す用のクラス
+
     void Start()
     {
         // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
         _serialHandler.OnDataReceived += OnDataReceived;
     }
 
-    void Update()
-    {
-        // UnityからArduinoに送る場合はココに記述
-        //string command = "hogehoge";
-        //serialHandler.Write(command);
-    }
-
     //受信した信号(message)に対する処理
     //messageのプロトコル
     //加速度センサー系は符号+5桁数字=6桁
-    //S(6桁GyroX)(6桁GyroZ)(スイッチ1桁)E
+    //S(6桁GyroX)(6桁GyroZ)(スイッチ1桁)(4桁ロータリーエンコーダー)E
     void OnDataReceived(string message)
     {
         if (message == null)
             return;
 
         // ここでデコード処理等を記述
-        Debug.Log(message);
+        //Debug.Log(message);
 
         if (message.Length < 6)
             return;
@@ -66,11 +62,21 @@ public class DeccordManager : MonoBehaviour
 
         //ボタンの入力情報の抽出
 
-        int sw = GetValueFromMessage(message, start, 1);
+        const int switchLength = 1;
+
+        int sw = GetValueFromMessage(message, start, switchLength);
         start++;
 
         _buttonInput.UpdateInputInfo(sw);
-        
+
+        //ロータリーエンコーダーの入力情報の抽出
+
+        const int rotaryEncoderLength = 4;
+
+        int delta = GetValueFromMessage(message, start, rotaryEncoderLength);
+        start += rotaryEncoderLength;
+
+        _rotaryEncoderInput.UpdateInputInfo(delta);
     }
 
     int GetValueFromMessage(string message,int start,int length)
