@@ -29,6 +29,28 @@ public class MathfExtension
         return Quaternion.LookRotation(forward) * localDir;
     }
 
+
+    /// <summary>
+    /// 箱型の範囲の中でランダムに座標を返す(使う際はlocalからworldへの変換を利用することをオススメする)
+    /// </summary>
+    public static Vector3 RandomPositionInWorldBox()
+    {
+        const float halfLength = 0.5f;
+
+        //X軸
+        float x = Random.Range(-halfLength, halfLength);
+        //Y軸
+        float y = Random.Range(-halfLength, halfLength);
+        //Z軸
+        float z = Random.Range(-halfLength, halfLength);
+
+        Vector3 ret = new Vector3(x, y, z);
+        return ret;
+    }
+
+
+
+
     /// <summary>
     /// maxよりもminの方が大きければ、自動的に入れ替える(int型)
     /// </summary>
