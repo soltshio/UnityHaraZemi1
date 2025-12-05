@@ -3,11 +3,16 @@ using UnityEngine.Pool;
 
 //隕石の生成のマネージャー
 
-public class MeteorInstantiateManager : MonoBehaviour
+public class MeteorPool : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
 
     private ObjectPool<GameObject> pool;
+
+    public GameObject Get()//生成
+    {
+        return pool.Get();
+    }
 
     private void Awake()
     {
@@ -31,6 +36,8 @@ public class MeteorInstantiateManager : MonoBehaviour
 
     private void OnGet(GameObject b)
     {
+        //初期化処理
+
         b.gameObject.SetActive(true);
     }
 
@@ -42,10 +49,5 @@ public class MeteorInstantiateManager : MonoBehaviour
     private void OnDestroyBullet(GameObject b)
     {
         Destroy(b.gameObject);
-    }
-
-    public GameObject Get()
-    {
-        return pool.Get();
     }
 }

@@ -31,9 +31,9 @@ public class MathfExtension
 
 
     /// <summary>
-    /// 箱型の範囲の中でランダムに座標を返す(使う際はlocalからworldへの変換を利用することをオススメする)
+    /// 箱型の範囲(1辺ごとに-0.5～0.5が返される)の中でランダムに座標を返す(使う際はlocalからworldへの変換を利用することをオススメする)
     /// </summary>
-    public static Vector3 RandomPositionInWorldBox()
+    public static Vector3 RandomPositionInNormalzeBox()
     {
         const float halfLength = 0.5f;
 
