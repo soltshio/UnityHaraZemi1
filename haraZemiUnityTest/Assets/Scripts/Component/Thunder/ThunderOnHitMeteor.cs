@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DebugOnHit : MonoBehaviour
+public class ThunderOnHitMeteor : MonoBehaviour
 {
     [SerializeField]
     SendManager _sendManager;
@@ -53,6 +53,15 @@ public class DebugOnHit : MonoBehaviour
 
     private void OnHit(RaycastHit hit)
     {
+        //è¦Î‘¤‚Ì“–‚½‚Á‚½‚Ìˆ—‚ğŒÄ‚Ño‚·
+        var meteorOnHit = hit.collider.GetComponent<IThunderHittable>();
+
+        if (meteorOnHit != null)
+        {
+            meteorOnHit.OnHit();
+        }
+
+
         if(IsTimeOut)
         {
             //ƒqƒbƒg

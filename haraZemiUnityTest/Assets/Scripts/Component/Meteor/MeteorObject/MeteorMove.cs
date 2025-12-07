@@ -14,7 +14,7 @@ public class MeteorMove : MonoBehaviour
     [SerializeField]
     Transform _target;
 
-    public void Init(float speed,Transform target)
+    public void InitOnEnable(float speed,Transform target)
     {
         _speed = speed;
         _target = target;

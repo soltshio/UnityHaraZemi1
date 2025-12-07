@@ -71,5 +71,25 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 834680267181165604}
   m_SourcePrefab: {fileID: 100100000, guid: c302adfd10e320145ba9816d05561923, type: 3}
+--- !u!1 &4921307305465487154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
+  m_PrefabInstance: {fileID: 6736138343475056155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &834680267181165604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4921307305465487154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08842873d74db74ea619e1fbd026f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmallMeteorOnHitThunder

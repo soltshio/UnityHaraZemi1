@@ -18,17 +18,17 @@ public class InitMeteorMove_SpawnedMeteor : MonoBehaviour
 
     private void Awake()
     {
-        _meteorPool.OnSpawn += SetMeteorMove;
+        _meteorPool.OnSpawnEnable += SetMeteorMove;
     }
 
-    void SetMeteorMove(GameObject gobj)
+    void SetMeteorMove(GameObject gObj)
     {
-        var meteorMove = gobj.GetComponent<MeteorMove>();
+        var meteorMove = gObj.GetComponent<MeteorMove>();
 
         if (meteorMove == null) return;
 
         float speed = Random.Range(_minSpeed, _maxSpeed);
 
-        meteorMove.Init(speed, _target);
+        meteorMove.InitOnEnable(speed, _target);
     }
 }

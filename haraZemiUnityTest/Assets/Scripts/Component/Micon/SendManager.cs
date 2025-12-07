@@ -8,7 +8,7 @@ public class SendManager : MonoBehaviour
     SerialHandler _serialHandler;
 
     [SerializeField]
-    DebugOnHit _onHit;
+    ThunderOnHitMeteor _onHit;
 
     [SerializeField]
     DebugSendConvergence _sendConvergence;

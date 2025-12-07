@@ -12,7 +12,7 @@ public class InitPos_SpawnedMeteor : MonoBehaviour
 
     private void Awake()
     {
-        _meteorPool.OnSpawn += SetSpawnedMeteorPos;
+        _meteorPool.OnSpawnEnable += SetSpawnedMeteorPos;
     }
 
     void SetSpawnedMeteorPos(GameObject gobj)
