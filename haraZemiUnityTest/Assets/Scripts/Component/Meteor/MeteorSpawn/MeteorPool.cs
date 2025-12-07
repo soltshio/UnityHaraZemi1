@@ -1,53 +1,61 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using System;
 
 //隕石の生成のマネージャー
 
 public class MeteorPool : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] GameObject _meteorPrefab;
 
-    private ObjectPool<GameObject> pool;
+    [SerializeField]
+    int _maxCount;
+
+    private ObjectPool<GameObject> _pool;
+    public event Action<GameObject> OnSpawn;
+
+    public int ActiveCount { get { return _pool.CountActive; } }//アクティブ状態になっている隕石の数を取得
 
     public GameObject Get()//生成
     {
-        return pool.Get();
+        return _pool.Get();
     }
 
     private void Awake()
     {
-        pool = new ObjectPool<GameObject>(
-            createFunc: CreateBullet,
+        _pool = new ObjectPool<GameObject>(
+            createFunc: OnCreate,
             actionOnGet: OnGet,
             actionOnRelease: OnRelease,
             actionOnDestroy: OnDestroyBullet,
             collectionCheck: false,
             defaultCapacity: 20,
-            maxSize: 100
+            maxSize: _maxCount
         );
     }
 
-    private GameObject CreateBullet()
+    private GameObject OnCreate()
     {
-        var b = Instantiate(bulletPrefab);
+        var g = Instantiate(_meteorPrefab);
+        g.SetActive(false);
         // ← GameObject側にプールを渡す(後で自分で破棄出来るようにするため)
-        return b;
+        return g;
     }
 
-    private void OnGet(GameObject b)
+    private void OnGet(GameObject g)
     {
-        //初期化処理
+        OnSpawn?.Invoke(g);//初期化処理
 
-        b.gameObject.SetActive(true);
+        g.gameObject.SetActive(true);
     }
 
-    private void OnRelease(GameObject b)
+    private void OnRelease(GameObject g)
     {
-        b.gameObject.SetActive(false);
+        g.gameObject.SetActive(false);
     }
 
-    private void OnDestroyBullet(GameObject b)
+    private void OnDestroyBullet(GameObject g)
     {
-        Destroy(b.gameObject);
+        Destroy(g.gameObject);
     }
 }
