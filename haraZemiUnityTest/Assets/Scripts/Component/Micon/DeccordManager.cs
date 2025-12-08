@@ -24,6 +24,8 @@ public class DeccordManager : MonoBehaviour
     [SerializeField]
     RotaryEncoderInput _rotaryEncoderInput;//ロータリーエンコーダーの情報を渡す用のクラス
 
+    const int _errorNum = -1; 
+
     void Start()
     {
         // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
@@ -42,10 +44,6 @@ public class DeccordManager : MonoBehaviour
         // ここでデコード処理等を記述
         //Debug.Log(message);
 
-        if (message.Length < 6)
-            return;
-
-
         int start = 1;
 
         //加速度センサーからジャイロの抽出
@@ -53,9 +51,11 @@ public class DeccordManager : MonoBehaviour
         const int accelerationSensorLength = 6;
 
         int gyroX = GetValueFromMessage(message, start, accelerationSensorLength);
+        if (gyroX == _errorNum) return;
         start += accelerationSensorLength;
 
         int gyroZ = GetValueFromMessage(message, start, accelerationSensorLength);
+        if (gyroZ == _errorNum) return;
         start += accelerationSensorLength;
 
         _accelerationSensorInput.UpdateSensorInfo(gyroX, gyroZ);
