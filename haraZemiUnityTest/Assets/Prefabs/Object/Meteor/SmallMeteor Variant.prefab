@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565745410171151179, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 52e7b13b98470f74f82ae082292fad46, type: 2}
+    - target: {fileID: 565745410171151179, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 478670cfe5effce489de5644a0fafc54, type: 2}
+    - target: {fileID: 565745410171151179, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3c57580bdbd61de40a8b96578d380b4e, type: 2}
     - target: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
       propertyPath: m_Name
       value: SmallMeteor Variant
