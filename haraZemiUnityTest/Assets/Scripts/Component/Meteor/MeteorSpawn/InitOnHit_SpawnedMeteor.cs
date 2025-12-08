@@ -6,6 +6,9 @@ public class InitOnHit_SpawnedMeteor : MonoBehaviour
     MeteorReleaser _meteorReleaser;
 
     [SerializeField]
+    ExplosionPool _explosionPool;
+
+    [SerializeField]
     MeteorPool _meteorPool;
 
     private void Awake()
@@ -19,6 +22,6 @@ public class InitOnHit_SpawnedMeteor : MonoBehaviour
 
         if (onHit == null) return;
 
-        onHit.InitAwake(_meteorReleaser);
+        onHit.InitAwake(_meteorReleaser,_explosionPool);
     }
 }

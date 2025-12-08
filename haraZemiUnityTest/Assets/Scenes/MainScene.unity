@@ -4410,6 +4410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InitOnHit_SpawnedMeteor
   _meteorReleaser: {fileID: 1505418626}
+  _explosionPool: {fileID: 1612669726}
   _meteorPool: {fileID: 1505418625}
 --- !u!1 &988586781
 GameObject:
@@ -5837,8 +5838,8 @@ MonoBehaviour:
   _meteorPool: {fileID: 1505418625}
   _spawnInterval: 1
   _oneSpawnCount: 4
-  _startSpawnCount: 30
-  _maxSpawnCount: 150
+  _startSpawnCount: 70
+  _maxSpawnCount: 100
 --- !u!114 &1505418625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6118,6 +6119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1612669725}
+  - component: {fileID: 1612669726}
   m_Layer: 0
   m_Name: ExplosionManager
   m_TagString: Untagged
@@ -6140,6 +6142,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 180098128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612669726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612669724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5db790957c61949bb3e935c4d6a494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplosionPool
+  _explosionPrefab: {fileID: 417761080263594737, guid: 99295dbdfdd715a4b957f8ee242eeff7, type: 3}
+  _maxSize: 10
 --- !u!1 &1648194576
 GameObject:
   m_ObjectHideFlags: 0

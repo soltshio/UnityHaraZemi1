@@ -5,15 +5,19 @@ using UnityEngine;
 public class SmallMeteorOnHitThunder : MonoBehaviour,IThunderHittable
 {
     MeteorReleaser _meteorReleaser;
+    ExplosionPool _explosionPool;
 
-    public void InitAwake(MeteorReleaser meteorReleaser)
+    public void InitAwake(MeteorReleaser meteorReleaser,ExplosionPool explosionPool)
     {
         _meteorReleaser = meteorReleaser;
+        _explosionPool = explosionPool;
     }
 
     public void OnHit(float damage)
     {
         //óãÇ…ìñÇΩÇ¡ÇΩÇÁë¶è¡Ç¶ÇÈ
         _meteorReleaser.Release(gameObject);
+        //îöî≠Ç‡ãNÇ±Ç∑
+        _explosionPool.Spawn(transform.position);
     }
 }
