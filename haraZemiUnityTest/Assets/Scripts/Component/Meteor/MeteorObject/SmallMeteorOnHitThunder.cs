@@ -11,7 +11,7 @@ public class SmallMeteorOnHitThunder : MonoBehaviour,IThunderHittable
         _meteorReleaser = meteorReleaser;
     }
 
-    public void OnHit()
+    public void OnHit(float damage)
     {
         //óãÇ…ìñÇΩÇ¡ÇΩÇÁë¶è¡Ç¶ÇÈ
         _meteorReleaser.Release(gameObject);

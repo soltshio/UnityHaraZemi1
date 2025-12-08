@@ -3,10 +3,13 @@ using UnityEngine;
 public class ThunderOnHitMeteor : MonoBehaviour
 {
     [SerializeField]
+    ThunderDamage _thunderDamage;
+
+    [SerializeField]
     SendManager _sendManager;
 
     [SerializeField]
-    ShotThunderRay _shotThunderray;
+    ShotThunderRay _shotThunderRay;
 
     [SerializeField]
     float _timeOutDuration = 0.5f;
@@ -36,7 +39,7 @@ public class ThunderOnHitMeteor : MonoBehaviour
 
     private void Awake()
     {
-        _shotThunderray.OnHit += OnHit;
+        _shotThunderRay.OnHit += OnHit;
     }
 
     private void Update()
@@ -58,7 +61,7 @@ public class ThunderOnHitMeteor : MonoBehaviour
 
         if (meteorOnHit != null)
         {
-            meteorOnHit.OnHit();
+            meteorOnHit.OnHit(_thunderDamage.Damage);
         }
 
 

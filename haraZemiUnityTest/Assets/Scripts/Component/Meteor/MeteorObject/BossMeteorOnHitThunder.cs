@@ -3,19 +3,16 @@ using UnityEngine;
 public class BossMeteorOnHitThunder : MonoBehaviour,IThunderHittable
 {
     [SerializeField]
-    float _damage;
-
-    [SerializeField]
     InvincibleTime _invincibleTime;
 
     [SerializeField]
     HitPoint _hitPoint;
 
-    public void OnHit()
+    public void OnHit(float damage)
     {
         if (_invincibleTime.IsInvincible) return;
 
-        _hitPoint.HP -= _damage;
+        _hitPoint.HP -= damage;
         _invincibleTime.StartInvincible();
     }
 }

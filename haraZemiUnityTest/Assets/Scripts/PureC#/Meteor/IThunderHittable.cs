@@ -2,5 +2,5 @@
 
 public interface IThunderHittable
 {
-    public void OnHit();
+    public void OnHit(float damage);
 }
