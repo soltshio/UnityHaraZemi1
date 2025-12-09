@@ -1854,7 +1854,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 45
   orthographic: 0
@@ -3125,6 +3125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 488493905}
+  - component: {fileID: 488493906}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3153,6 +3154,20 @@ Transform:
   - {fileID: 329005491}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488493906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488493904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ee017023c2eff4e8290f160abbc5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMotionOnConvergenceRate
+  _animator: {fileID: 793245570}
+  _thunderConvergence: {fileID: 478429916}
 --- !u!1 &523959106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,6 +3618,11 @@ CapsuleCollider:
 --- !u!4 &793245569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1b3ea814466c0c24cbd46c59acbf27f0, type: 3}
+  m_PrefabInstance: {fileID: 1805788278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &793245570 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1b3ea814466c0c24cbd46c59acbf27f0, type: 3}
   m_PrefabInstance: {fileID: 1805788278}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &796589980
@@ -4409,7 +4429,7 @@ MonoBehaviour:
   Lens:
     FieldOfView: 45
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 0.1
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -5947,7 +5967,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505418620}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 985765558ddd82b4281f475fbe07d2b3, type: 3}
   m_Name: 
@@ -6967,7 +6987,7 @@ MonoBehaviour:
   Lens:
     FieldOfView: 45
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 0.1
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
