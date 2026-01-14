@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using Unity.VisualScripting.Dependencies.Sqlite;
 
 //ロータリーエンコーダーの入力
 

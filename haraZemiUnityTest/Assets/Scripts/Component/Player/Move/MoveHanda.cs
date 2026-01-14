@@ -99,7 +99,7 @@ public class MoveHanda : MonoBehaviour
         double moveDeltaX = _accelerationSensorInput.GyroZSubt * _speed.x  / _moveFactor_Sensor;
         double moveDeltaY = _accelerationSensorInput.GyroXSubt * _speed.y  / _moveFactor_Sensor;
 
-        Vector2 move = new Vector2(-(float)moveDeltaX, -(float)moveDeltaY);
+        Vector2 move = new Vector2((float)moveDeltaX, (float)moveDeltaY);
 
         return move;
     }
