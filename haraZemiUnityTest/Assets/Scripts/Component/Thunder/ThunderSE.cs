@@ -16,10 +16,16 @@ public class ThunderSE : MonoBehaviour
     [Tooltip("ÉrÅ[ÉÄâπ")] [SerializeField]
     AudioVolumeChange _beam;
 
-    private void Awake()
+    private void OnEnable()
     {
         _thunderConvergence.OnChangedValue += OnChangeConvergence;
         _activateThunder.OnChangedValue += OnActivate;
+    }
+
+    private void OnDisable()
+    {
+        _thunderConvergence.OnChangedValue -= OnChangeConvergence;
+        _activateThunder.OnChangedValue -= OnActivate;
     }
 
     void OnActivate(bool isActivate)

@@ -14,9 +14,14 @@ public class InitOnHit_SpawnedMeteor : MonoBehaviour
     [SerializeField]
     MeteorPool _meteorPool;
 
-    private void Awake()
+    private void OnEnable()
     {
         _meteorPool.OnSpawnAwake += SetOnHit;
+    }
+
+    private void OnDisable()
+    {
+        _meteorPool.OnSpawnAwake -= SetOnHit;
     }
 
     void SetOnHit(GameObject gObj)

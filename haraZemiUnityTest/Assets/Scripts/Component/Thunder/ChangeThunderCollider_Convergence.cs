@@ -36,10 +36,16 @@ public class ChangeThunderCollider_Convergence : MonoBehaviour
     [SerializeField]
     ActivateThunder _activateThunder;
 
-    private void Awake()
+    private void OnEnable()
     {
         _activateThunder.OnChangedValue += ChangeActive;
         _thunderConvergence.OnChangedValue += ChangeThunderColliderSize;
+    }
+
+    private void OnDisable()
+    {
+        _activateThunder.OnChangedValue -= ChangeActive;
+        _thunderConvergence.OnChangedValue -= ChangeThunderColliderSize;
     }
 
     void ChangeActive(bool isActive)

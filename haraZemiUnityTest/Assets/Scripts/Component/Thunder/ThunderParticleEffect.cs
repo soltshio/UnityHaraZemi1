@@ -39,10 +39,16 @@ public class ThunderParticleEffect : MonoBehaviour
     [SerializeField]
     ActivateThunder _activateThunder;
 
-    private void Awake()
+    private void OnEnable()
     {
         _thunderConvergence.OnChangedValue += ChangeParticle;
         _activateThunder.OnChangedValue += ChangeActive;
+    }
+
+    private void OnDisable()
+    {
+        _thunderConvergence.OnChangedValue -= ChangeParticle;
+        _activateThunder.OnChangedValue -= ChangeActive;
     }
 
     private void Start()
