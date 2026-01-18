@@ -4154,53 +4154,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RotaryEncoderInput
   _thresholdMax: 0
   _thresholdMin: 0
---- !u!1 &804835512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 804835513}
-  - component: {fileID: 804835514}
-  m_Layer: 0
-  m_Name: SerialHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &804835513
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804835512}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1280, y: 720, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &804835514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804835512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aadf34697d4eea48b51a1ec0491d52c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SerialHandler
-  _dontUseMicon: 1
-  _portNum: 4
-  _bitRate: 115200
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7862,4 +7815,3 @@ SceneRoots:
   - {fileID: 685568007}
   - {fileID: 2162091946459438103}
   - {fileID: 1976735505}
-  - {fileID: 804835513}
