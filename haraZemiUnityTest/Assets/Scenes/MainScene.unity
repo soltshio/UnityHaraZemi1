@@ -2781,6 +2781,7 @@ MonoBehaviour:
   _startPoint: {fileID: 1882580501}
   _resetPos:
     _resetDuration: 0.17
+  _moveScreenSize: {x: 480, y: 270}
   _speed: {x: 2, y: 2}
   _limit: {x: 1.7, y: 0.8}
   _rotateMoving:
@@ -4066,38 +4067,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 12fcfc0d-fe42-4826-9337-3405d8729ad8
     m_ActionName: 'Game/Action[/Keyboard/enter]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478429914}
-        m_TargetAssemblyTypeName: DebugChange, Assembly-CSharp
-        m_MethodName: Inc
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 968dc9f8-3347-4193-bb85-78907ee1e3db
-    m_ActionName: 'Game/DebugInc[/Keyboard/c]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478429914}
-        m_TargetAssemblyTypeName: DebugChange, Assembly-CSharp
-        m_MethodName: Dec
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 178fea18-c6ec-405f-a02b-979db6a38ffb
-    m_ActionName: 'Game/DebugDec[/Keyboard/v]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 478429914}
@@ -6038,8 +6007,8 @@ MonoBehaviour:
   _meteorPool: {fileID: 1505418625}
   _spawnInterval: 1
   _oneSpawnCount: 4
-  _startSpawnCount: 70
-  _maxSpawnCount: 100
+  _startSpawnCount: 30
+  _maxSpawnCount: 60
 --- !u!114 &1505418625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6053,7 +6022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeteorPool
   _meteorPrefab: {fileID: 4921307305465487154, guid: 156b668ce5973ac4591acefdc82693c6, type: 3}
-  _maxCount: 200
+  _maxCount: 100
   _defaultCapacity: 60
 --- !u!114 &1505418626
 MonoBehaviour:

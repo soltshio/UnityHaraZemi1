@@ -11,7 +11,10 @@ public class MoveHanda : MonoBehaviour
     [Tooltip("位置のリセット関係")] [SerializeField]
     ResetPos _resetPos;
 
-    [Tooltip("速度")] [Min(0)] [SerializeField]
+    [Tooltip("スクリーンに対しての移動範囲(マウス操作のみ)")] [Min(0)] [SerializeField]
+    Vector2 _moveScreenSize;
+
+    [Tooltip("速度(マイコンでの操作の場合のみ)")] [Min(0)] [SerializeField]
     Vector2 _speed;
 
     [Tooltip("移動限界")] [Min(0)] [SerializeField]
@@ -35,7 +38,7 @@ public class MoveHanda : MonoBehaviour
 
     Vector2 _move;
 
-    const float _moveFactor_Mouse = 1.5f;
+    //センサー操作関係の係数
     const float _moveFactor_Sensor = 0.00025f;
 
     const int _callReset_RepeatedCount = 2;
@@ -44,12 +47,27 @@ public class MoveHanda : MonoBehaviour
 
     public void MoveInput(InputAction.CallbackContext context)
     {
+        if (_accelerationSensorInput.IsUsedSensor) return;//センサーが使われているなら無視
+
         Vector2 getInput = context.ReadValue<Vector2>();
 
-        double moveDeltaX = getInput.x * _speed.x * _moveFactor_Mouse;
-        double moveDeltaY = getInput.y * _speed.y * _moveFactor_Mouse;
+        float width = (float)Screen.width;
+        float height = (float)Screen.height;
 
-        _move = new Vector2((float)moveDeltaX, (float)moveDeltaY);
+        //中心を0とする
+        float screenX = MathfExtension.Remap(getInput.x, 0f, width, -width / 2, width / 2);
+        float screenY = MathfExtension.Remap(getInput.y, 0f, height, -height / 2, height / 2);
+
+        //画面位置->はんだごての位置に変換
+        float x = MathfExtension.RemapClamped(screenX, -_moveScreenSize.x, _moveScreenSize.x, -_limit.x, _limit.x);
+        float y = MathfExtension.RemapClamped(screenY, -_moveScreenSize.y, _moveScreenSize.y, -_limit.y, _limit.y);
+
+        Vector2 destination;
+
+        destination.x = x;
+        destination.y = y;
+
+        UpdatePos(destination);
     }
 
     private void Awake()

@@ -91,4 +91,33 @@ public class MathfExtension
         NormalizeRange(ref min, ref max);
         return value >= min && value <= max;
     }
+
+    /// <summary>
+    /// ShaderGraph の Remap と同等の処理
+    /// inMin～inMax の値を outMin～outMax に線形変換する
+    /// </summary>
+    public static float Remap(
+        float value,
+        float inMin,
+        float inMax,
+        float outMin,
+        float outMax)
+    {
+        return outMin + (value - inMin) * (outMax - outMin) / (inMax - inMin);
+    }
+
+    /// <summary>
+    /// Remapのvalueがinの範囲外に出ていたらその範囲内に収めるver
+    /// ShaderGraph の Saturate + Remap 相当
+    /// </summary>
+    public static float RemapClamped(
+        float value,
+        float inMin,
+        float inMax,
+        float outMin,
+        float outMax)
+    {
+        float t = Mathf.InverseLerp(inMin, inMax, value);
+        return Mathf.Lerp(outMin, outMax, t);
+    }
 }
