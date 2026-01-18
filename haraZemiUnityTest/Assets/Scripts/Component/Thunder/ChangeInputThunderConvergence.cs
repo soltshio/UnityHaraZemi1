@@ -12,38 +12,19 @@ public class ChangeInputThunderConvergence : MonoBehaviour
     [SerializeField]
     RotaryEncoderInput _rotaryEncoderInput;
 
-    [Tooltip("キーボード入力の変化量")] [SerializeField]
-    float _inputKeyBoardDelta = 0.5f;
+    [Tooltip("マウス入力の変化量")] [SerializeField]
+    float _inputMouseDelta = 0.5f;
 
     [Tooltip("ロータリーエンコーダー入力の変化量")] [SerializeField]
     float _inputRotaryEncoderDelta = 0.5f;
 
-    bool inc=false;
-    bool dec=false;
-
-    public void Inc(InputAction.CallbackContext context)
+    public void SetValue(InputAction.CallbackContext context)
     {
-        if(context.performed)
-        {
-            inc = true;
-        }
-        else if(context.canceled)
-        {
-            inc = false;
-        }
+        Vector2 input = context.ReadValue<Vector2>();
+
+        _thunderConvergence.ConvergenceRate += input.y * _inputMouseDelta;
     }
 
-    public void Dec(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            dec = true;
-        }
-        else if (context.canceled)
-        {
-            dec = false;
-        }
-    }
     private void Awake()
     {
         _rotaryEncoderInput.OnChangeValue += OnChangeRotaryEncoderValue;
@@ -52,18 +33,5 @@ public class ChangeInputThunderConvergence : MonoBehaviour
     void OnChangeRotaryEncoderValue(int input)
     {
         _thunderConvergence.ConvergenceRate += _inputRotaryEncoderDelta * (float)input;
-    }
-
-    private void Update()
-    {
-        if(inc)
-        {
-            _thunderConvergence.ConvergenceRate += _inputKeyBoardDelta * Time.deltaTime;
-        }
-
-        if(dec)
-        {
-            _thunderConvergence.ConvergenceRate -= _inputKeyBoardDelta * Time.deltaTime;
-        }
     }
 }

@@ -2851,7 +2851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DebugChange
   _thunderConvergence: {fileID: 478429916}
   _rotaryEncoderInput: {fileID: 799392599}
-  _inputKeyBoardDelta: 0.5
+  _inputMouseDelta: 0.01
   _inputRotaryEncoderDelta: 0.01
 --- !u!114 &478429915
 MonoBehaviour:
@@ -4098,6 +4098,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 178fea18-c6ec-405f-a02b-979db6a38ffb
     m_ActionName: 'Game/DebugDec[/Keyboard/v]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 478429914}
+        m_TargetAssemblyTypeName: ChangeInputThunderConvergence, Assembly-CSharp
+        m_MethodName: SetValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ac4894ce-2c70-4c99-bf88-f6e44a3c8dab
+    m_ActionName: 'Game/ChangeConvergence[/Mouse/scroll]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game

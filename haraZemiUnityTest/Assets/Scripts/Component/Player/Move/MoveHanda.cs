@@ -35,7 +35,8 @@ public class MoveHanda : MonoBehaviour
 
     Vector2 _move;
 
-    const float _moveFactor_Sensor = 4000;
+    const float _moveFactor_Mouse = 1.5f;
+    const float _moveFactor_Sensor = 0.00025f;
 
     const int _callReset_RepeatedCount = 2;
 
@@ -45,8 +46,8 @@ public class MoveHanda : MonoBehaviour
     {
         Vector2 getInput = context.ReadValue<Vector2>();
 
-        double moveDeltaX = getInput.x * _speed.x;
-        double moveDeltaY = getInput.y * _speed.y;
+        double moveDeltaX = getInput.x * _speed.x * _moveFactor_Mouse;
+        double moveDeltaY = getInput.y * _speed.y * _moveFactor_Mouse;
 
         _move = new Vector2((float)moveDeltaX, (float)moveDeltaY);
     }
@@ -96,8 +97,8 @@ public class MoveHanda : MonoBehaviour
         if (!_accelerationSensorInput.IsUsedSensor) return _move;//センサーが使われていないなら、処理をしない
 
         //加速度センサーからの入力を移動量に変換
-        double moveDeltaX = _accelerationSensorInput.GyroZSubt * _speed.x  / _moveFactor_Sensor;
-        double moveDeltaY = _accelerationSensorInput.GyroXSubt * _speed.y  / _moveFactor_Sensor;
+        double moveDeltaX = _accelerationSensorInput.GyroZSubt * _speed.x  * _moveFactor_Sensor;
+        double moveDeltaY = _accelerationSensorInput.GyroXSubt * _speed.y  * _moveFactor_Sensor;
 
         Vector2 move = new Vector2((float)moveDeltaX, (float)moveDeltaY);
 
