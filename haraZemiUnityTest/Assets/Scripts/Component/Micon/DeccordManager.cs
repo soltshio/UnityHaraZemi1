@@ -13,9 +13,6 @@ public class DeccordManager : MonoBehaviour
 {
     // シリアル通信のクラス、クラス名は正しく書くこと
     [SerializeField]
-    SerialHandler _serialHandler;
-
-    [SerializeField]
     AccelerationSensorInput _accelerationSensorInput;//センサーの情報を渡す用のクラス
 
     [SerializeField]
@@ -26,10 +23,15 @@ public class DeccordManager : MonoBehaviour
 
     const int _errorNum = -1; 
 
-    void Start()
+    private void OnEnable()
     {
         // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
-        _serialHandler.OnDataReceived += OnDataReceived;
+        SerialHandler.Instance.OnDataReceived += OnDataReceived;
+    }
+
+    private void OnDisable()
+    {
+        SerialHandler.Instance.OnDataReceived -= OnDataReceived;
     }
 
     //受信した信号(message)に対する処理

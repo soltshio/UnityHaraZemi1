@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class SendManager : MonoBehaviour
 {
-    // シリアル通信のクラス、クラス名は正しく書くこと
-    [SerializeField]
-    SerialHandler _serialHandler;
-
     [SerializeField]
     ThunderOnHitMeteor _onHit;
 
@@ -15,15 +11,19 @@ public class SendManager : MonoBehaviour
     
     void Update()
     {
+        var serialHandlerInstance = SerialHandler.Instance;
+
+        if (serialHandlerInstance == null) return;
+        
         string message;
 
-        if(_onHit.HasMessage(out message))
+        if (_onHit.HasMessage(out message))
         {
-            _serialHandler.Write(message);
+            serialHandlerInstance.Write(message);
         }
         if(_sendConvergence.HasMessage(out message))
         {
-            _serialHandler.Write(message);
+            serialHandlerInstance.Write(message);
         }
     }
 }

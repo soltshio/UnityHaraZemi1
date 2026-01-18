@@ -36,14 +36,19 @@ public class SerialHandler : MonoBehaviour
     string message_;
     bool isNewMessageReceived_ = false;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+    public static SerialHandler Instance { get; private set; }
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         if (_dontUseMicon) return;
         Open(myPortName + _portNum.ToString());
     }
