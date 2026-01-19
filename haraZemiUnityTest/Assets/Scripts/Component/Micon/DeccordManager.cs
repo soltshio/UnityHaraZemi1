@@ -25,12 +25,16 @@ public class DeccordManager : MonoBehaviour
 
     private void OnEnable()
     {
+        if (SerialHandler.Instance == null) return;
+
         // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
         SerialHandler.Instance.OnDataReceived += OnDataReceived;
     }
 
     private void OnDisable()
     {
+        if (SerialHandler.Instance == null) return;
+
         SerialHandler.Instance.OnDataReceived -= OnDataReceived;
     }
 

@@ -38,6 +38,11 @@ public class SerialHandler : MonoBehaviour
 
     public static SerialHandler Instance { get; private set; }
 
+    public bool DontUseMicon
+    {
+        get { return _dontUseMicon; }
+    }
+
     void Awake()
     {
         if (Instance != null && Instance != this)

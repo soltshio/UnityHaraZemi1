@@ -11,7 +11,7 @@ public class CurcorMoveByMicon : MonoBehaviour
     Vector2 _speed;
 
     //センサー操作関係の係数
-    const float _moveFactor_Sensor = 0.00025f;
+    const float _moveFactor_Sensor = 0.02f;
 
     // Update is called once per frame
     void Update()
@@ -22,10 +22,15 @@ public class CurcorMoveByMicon : MonoBehaviour
 
         //加速度センサーからの入力を移動量に変換
         double moveDeltaX = _accelerationSensorInput.GyroZSubt * _speed.x * _moveFactor_Sensor;
-        double moveDeltaY = _accelerationSensorInput.GyroXSubt * _speed.y * _moveFactor_Sensor;
+        double moveDeltaY = -_accelerationSensorInput.GyroXSubt * _speed.y * _moveFactor_Sensor;
+
+        moveDeltaX *= Time.deltaTime;
+        moveDeltaY *= Time.deltaTime;
 
         int newX = x + (int)moveDeltaX;
         int newY = y + (int)moveDeltaY;
+
+        Debug.Log(moveDeltaX + ":" + moveDeltaY);
 
         MouseCursorHandler.Move(newX, newY);
     }
