@@ -8158,7 +8158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaba453558ec7a4ab28fbaf18bf28d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddScoreOnDead
-  _addScoreValue: 100
+  _addScoreValue: 2000
   _hitPoint: {fileID: 543450652648895788}
 --- !u!1001 &2162091946459438103
 PrefabInstance:
