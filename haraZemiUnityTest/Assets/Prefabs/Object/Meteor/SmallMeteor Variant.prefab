@@ -87,6 +87,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
       insertIndex: -1
       addedObject: {fileID: 834680267181165604}
+    - targetCorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7410769056374889603}
+    - targetCorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7431397234657572467}
+    - targetCorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1456369099350113401}
   m_SourcePrefab: {fileID: 100100000, guid: c302adfd10e320145ba9816d05561923, type: 3}
 --- !u!1 &4921307305465487154 stripped
 GameObject:
@@ -105,3 +114,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08842873d74db74ea619e1fbd026f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmallMeteorOnHitThunder
+  _hitPoint: {fileID: 7410769056374889603}
+--- !u!114 &7410769056374889603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4921307305465487154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e15f2939a0e03148a021fab78cb6581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoint
+  _hpMax: 1
+  _shouldLockHPOnDead: 1
+--- !u!114 &7431397234657572467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4921307305465487154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaba453558ec7a4ab28fbaf18bf28d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddScoreOnDead
+  _addScoreValue: 10
+  _hitPoint: {fileID: 7410769056374889603}
+--- !u!114 &1456369099350113401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4921307305465487154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31224bd15f61a734ba7ecd28f4c1246a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDead
+  _hitPoint: {fileID: 7410769056374889603}

@@ -1,7 +1,6 @@
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
-public class DebugSendConvergence : MonoBehaviour
+public class SendConvergence : MonoBehaviour
 {
     [SerializeField]
     ThunderConvergence _thunderConvergence;
@@ -28,9 +27,14 @@ public class DebugSendConvergence : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         _thunderConvergence.OnChangedValue += SendConvergenceToMicon;
+    }
+
+    private void OnDisable()
+    {
+        _thunderConvergence.OnChangedValue -= SendConvergenceToMicon;
     }
 
     void SendConvergenceToMicon(float convergence)

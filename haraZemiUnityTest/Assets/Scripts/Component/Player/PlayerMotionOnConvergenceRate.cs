@@ -12,9 +12,14 @@ public class PlayerMotionOnConvergenceRate : MonoBehaviour
 
     const string _blendParameterName = "Blend";
 
-    private void Awake()
+    private void OnEnable()
     {
         _thunderConvergence.OnChangedValue += OnChangeConvergence;
+    }
+
+    private void OnDisable()
+    {
+        _thunderConvergence.OnChangedValue -= OnChangeConvergence;
     }
 
     void OnChangeConvergence(float convergenceRate)

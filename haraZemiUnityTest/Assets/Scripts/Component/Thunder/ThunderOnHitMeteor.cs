@@ -38,9 +38,14 @@ public class ThunderOnHitMeteor : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         _shotThunderRay.OnHit += OnHit;
+    }
+
+    private void OnDisable()
+    {
+        _shotThunderRay.OnHit -= OnHit;
     }
 
     private void Update()

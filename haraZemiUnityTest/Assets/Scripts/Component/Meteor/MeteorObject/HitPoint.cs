@@ -43,7 +43,7 @@ public class HitPoint : MonoBehaviour
         set { _isLockHP = value; }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         _isLockHP = false;
         _hp = _hpMax;

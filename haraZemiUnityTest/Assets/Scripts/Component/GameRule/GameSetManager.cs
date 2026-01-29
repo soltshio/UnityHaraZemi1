@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ public class GameSetManager : MonoBehaviour
 
     [SerializeField]
     GameOverConditionChecker _gameOverConditionChecker;
+
+    [SerializeField]
+    float _delayDuration_sceneChange;
 
     bool _isGameSet = false;
 
@@ -29,7 +33,7 @@ public class GameSetManager : MonoBehaviour
         if (_isGameSet) return;
 
         _isGameSet = true;
-        SceneManager.LoadScene("GameOverScene");
+        StartCoroutine(SceneLoadCoroutine("GameOverScene"));
     }
 
     void ToClear()
@@ -37,6 +41,13 @@ public class GameSetManager : MonoBehaviour
         if (_isGameSet) return;
 
         _isGameSet = true;
-        SceneManager.LoadScene("ClearScene");
+        StartCoroutine(SceneLoadCoroutine("ClearScene"));
+    }
+
+    IEnumerator SceneLoadCoroutine(string sceneName)
+    {
+        yield return new WaitForSeconds(_delayDuration_sceneChange);
+
+        SceneManager.LoadScene(sceneName);
     }
 }

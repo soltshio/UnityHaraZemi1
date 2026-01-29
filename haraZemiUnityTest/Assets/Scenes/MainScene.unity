@@ -3356,6 +3356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488493905}
   - component: {fileID: 488493906}
+  - component: {fileID: 488493907}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3398,6 +3399,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotionOnConvergenceRate
   _animator: {fileID: 793245570}
   _thunderConvergence: {fileID: 478429916}
+--- !u!114 &488493907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488493904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a30f3380ded5d408341991effaef86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMotionOnActivateThunder
+  _animator: {fileID: 793245570}
+  _activateThunder: {fileID: 478429912}
 --- !u!1 &511341652
 GameObject:
   m_ObjectHideFlags: 0
@@ -5662,6 +5677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameSetManager
   _bossHP: {fileID: 543450652648895788}
   _gameOverConditionChecker: {fileID: 1641385578}
+  _delayDuration_sceneChange: 0.3
 --- !u!1 &1174396277
 GameObject:
   m_ObjectHideFlags: 0
@@ -7687,6 +7703,10 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1b3ea814466c0c24cbd46c59acbf27f0, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6210361247932198577, guid: 1b3ea814466c0c24cbd46c59acbf27f0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -8126,6 +8146,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InvincibleTime
   _invincibleDuration: 0.1
+--- !u!114 &543450652648895794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833003427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaba453558ec7a4ab28fbaf18bf28d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddScoreOnDead
+  _addScoreValue: 100
+  _hitPoint: {fileID: 543450652648895788}
 --- !u!1001 &2162091946459438103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8206,6 +8240,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
       insertIndex: -1
       addedObject: {fileID: 543450652648895789}
+    - targetCorrespondingSourceObject: {fileID: 1815070263804825897, guid: c302adfd10e320145ba9816d05561923, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 543450652648895794}
   m_SourcePrefab: {fileID: 100100000, guid: c302adfd10e320145ba9816d05561923, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

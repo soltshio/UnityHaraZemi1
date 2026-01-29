@@ -7,7 +7,7 @@ public class SendManager : MonoBehaviour
     ThunderOnHitMeteor _onHit;
 
     [SerializeField]
-    DebugSendConvergence _sendConvergence;
+    SendConvergence _sendConvergence;
     
     void Update()
     {
@@ -25,5 +25,14 @@ public class SendManager : MonoBehaviour
         {
             serialHandlerInstance.Write(message);
         }
+    }
+
+    private void OnDisable()
+    {
+        var serialHandlerInstance = SerialHandler.Instance;
+
+        if (serialHandlerInstance == null) return;
+
+        serialHandlerInstance.Write(MiconCommandDictionary.normal);
     }
 }

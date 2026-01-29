@@ -16,20 +16,20 @@ public class InitOnHit_SpawnedMeteor : MonoBehaviour
 
     private void OnEnable()
     {
-        _meteorPool.OnSpawnAwake += SetOnHit;
+        _meteorPool.OnSpawnAwake += SetDestroyOnDead;
     }
 
     private void OnDisable()
     {
-        _meteorPool.OnSpawnAwake -= SetOnHit;
+        _meteorPool.OnSpawnAwake -= SetDestroyOnDead;
     }
 
-    void SetOnHit(GameObject gObj)
+    void SetDestroyOnDead(GameObject gObj)
     {
-        var onHit = gObj.GetComponent<SmallMeteorOnHitThunder>();
+        var destroyOnDead = gObj.GetComponent<DestroyOnDead>();
 
-        if (onHit == null) return;
+        if (destroyOnDead == null) return;
 
-        onHit.InitAwake(_meteorReleaser,_explosionPool,_meteorDestroySE);
+        destroyOnDead.InitAwake(_meteorReleaser,_explosionPool,_meteorDestroySE);
     }
 }
