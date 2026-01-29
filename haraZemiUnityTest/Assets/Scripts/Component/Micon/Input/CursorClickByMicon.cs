@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 //マイコン操作によるカーソルクリック
 
@@ -18,17 +20,37 @@ public class CursorClickByMicon : MonoBehaviour
         _buttonInput.OnInputDown -= OnInputDown;
         _buttonInput.OnInputUp -= OnInputUp;
 
-        //押してる最中だったらボタンを無理やり離させる
-        if (MouseCursorHandler.IsLeftButtonDown()) MouseCursorHandler.LeftUp();
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+        {
+            Release();
+        }
     }
 
     void OnInputDown()
     {
-        MouseCursorHandler.LeftDown();
+        Press();
     }
 
     void OnInputUp()
     {
-        MouseCursorHandler.LeftUp();
+        Release();
+    }
+
+    void Press()
+    {
+        if (Mouse.current == null) return;
+
+        // ★ byte で送る
+        InputSystem.QueueDeltaStateEvent(Mouse.current.leftButton, (byte)1);
+        InputSystem.Update();
+    }
+
+    void Release()
+    {
+        if (Mouse.current == null) return;
+
+        // ★ byte で送る
+        InputSystem.QueueDeltaStateEvent(Mouse.current.leftButton, (byte)0);
+        InputSystem.Update();
     }
 }

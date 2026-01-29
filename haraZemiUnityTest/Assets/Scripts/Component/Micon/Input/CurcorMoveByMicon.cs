@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 //マイコン操作によるカーソル移動
 
@@ -13,25 +15,41 @@ public class CurcorMoveByMicon : MonoBehaviour
     //センサー操作関係の係数
     const float _moveFactor_Sensor = 0.02f;
 
-    // Update is called once per frame
+    bool _enableControl = true;
+
     void Update()
     {
-        if (!_accelerationSensorInput.IsUsedSensor) return;//センサーが使われていないなら、処理をしない
+        // 新InputSystem版：ESCキー判定
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            _enableControl = !_enableControl;
+        }
 
-        if (!MouseCursorHandler.TryGetPosition(out int x, out int y)) return;
+        if (!_enableControl) return;
+        if (!_accelerationSensorInput.IsUsedSensor) return;
+        if (Mouse.current == null) return;
 
-        //加速度センサーからの入力を移動量に変換
-        double moveDeltaX = _accelerationSensorInput.GyroZSubt * _speed.x * _moveFactor_Sensor;
-        double moveDeltaY = -_accelerationSensorInput.GyroXSubt * _speed.y * _moveFactor_Sensor;
+        Vector2 currentPos = Mouse.current.position.ReadValue();
+
+        float moveDeltaX = (float)(_accelerationSensorInput.GyroZSubt * _speed.x * _moveFactor_Sensor);
+        float moveDeltaY = (float)(_accelerationSensorInput.GyroXSubt * _speed.y * _moveFactor_Sensor);
 
         moveDeltaX *= Time.deltaTime;
         moveDeltaY *= Time.deltaTime;
 
-        int newX = x + (int)moveDeltaX;
-        int newY = y + (int)moveDeltaY;
+        Vector2 newPos = currentPos + new Vector2(moveDeltaX, moveDeltaY);
 
-        Debug.Log(moveDeltaX + ":" + moveDeltaY);
+        newPos.x = Mathf.Clamp(newPos.x, 0, Screen.width);
+        newPos.y = Mathf.Clamp(newPos.y, 0, Screen.height);
 
-        MouseCursorHandler.Move(newX, newY);
+        // Unityのマウス入力を更新（UI用）
+        InputSystem.QueueStateEvent(Mouse.current, new MouseState
+        {
+            position = newPos
+        });
+        InputSystem.Update();
+
+        // 見た目のカーソルも動かす
+        Mouse.current.WarpCursorPosition(newPos);
     }
 }

@@ -166,11 +166,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &44474798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5739693938652489721, guid: 7bbfa8811a609db41b20ab25e8da9573, type: 3}
-  m_PrefabInstance: {fileID: 5680541431246121373}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &192348798
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,6 +808,7 @@ GameObject:
   - component: {fileID: 1207960538}
   - component: {fileID: 1207960537}
   - component: {fileID: 1207960536}
+  - component: {fileID: 1207960542}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -1083,6 +1079,19 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1207960542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207960534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e152a880f360e44e8e752e07619f728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorClickByMicon
+  _buttonInput: {fileID: 1207960539}
 --- !u!1 &1227817566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,29 +1723,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5739693938652489721, guid: 7bbfa8811a609db41b20ab25e8da9573, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5680541431246121376}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bbfa8811a609db41b20ab25e8da9573, type: 3}
 --- !u!4 &5680541431246121374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8708762976627797966, guid: 7bbfa8811a609db41b20ab25e8da9573, type: 3}
   m_PrefabInstance: {fileID: 5680541431246121373}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5680541431246121376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44474798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e152a880f360e44e8e752e07619f728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CursorClickByMicon
-  _buttonInput: {fileID: 1207960539}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
